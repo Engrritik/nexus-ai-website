@@ -32,15 +32,7 @@ export function Demo() {
           className="max-w-4xl mx-auto relative rounded-3xl overflow-hidden glass border border-white/10 shadow-2xl bg-black"
         >
           {/* 16:9 Aspect Ratio Container for responsive iframe */}
-          <div className="relative pt-[56.25%] w-full h-0">
-            <iframe 
-              src="https://drive.google.com/file/d/14WDNO3bo6qC_tlUTi6EDOWLd8fcL7TzD/preview" 
-              className="absolute inset-0 w-full h-full border-0"
-              allow="autoplay; encrypted-media" 
-              allowFullScreen
-              title="Nexus AI Demo"
-            ></iframe>
-          </div>
+          <iframe src='https://drive.google.com/file/d/14WDNO3bo6qC_tlUTi6EDOWLd8fcL7TzD/preview' width='100%' style={{aspectRatio: '16/9', borderRadius: '12px', border: 'none'}} allow='autoplay'></iframe>
         </motion.div>
       </div>
     </section>
