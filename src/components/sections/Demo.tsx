@@ -1,8 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export function Demo() {
+  const [isPlaying, setIsPlaying] = useState(false);
+
   return (
     <section id="demo" className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-6">
@@ -31,8 +34,29 @@ export function Demo() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="max-w-4xl mx-auto relative rounded-3xl overflow-hidden glass border border-white/10 shadow-2xl bg-black"
         >
-          {/* 16:9 Aspect Ratio Container for responsive iframe */}
-          <iframe src='https://drive.google.com/file/d/14WDNO3bo6qC_tlUTi6EDOWLd8fcL7TzD/preview' width='100%' style={{aspectRatio: '16/9', borderRadius: '12px', border: 'none'}} allow='autoplay'></iframe>
+          {isPlaying ? (
+            <iframe src='https://drive.google.com/file/d/14WDNO3bo6qC_tlUTi6EDOWLd8fcL7TzD/preview' width='100%' style={{aspectRatio: '16/9', borderRadius: '12px', border: 'none'}} allow='autoplay'></iframe>
+          ) : (
+            <div 
+              className="relative w-full cursor-pointer group flex items-center justify-center bg-[#0a0a0a]"
+              style={{aspectRatio: '16/9', borderRadius: '12px'}}
+              onClick={() => setIsPlaying(true)}
+            >
+              {/* Background gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-teal/10 via-black/80 to-black z-0 rounded-xl"></div>
+              
+              <div className="w-20 h-20 bg-teal/90 rounded-full flex items-center justify-center z-10 shadow-[0_0_40px_rgba(0,212,170,0.5)] group-hover:scale-110 transition-transform">
+                <svg className="w-8 h-8 text-black ml-1" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+
+              <div className="absolute bottom-6 left-8 z-10">
+                <p className="font-semibold text-lg text-white mb-1">Nexus AI Automatic Booking Demo</p>
+                <p className="hidden md:block text-sm text-gray-400">Click to watch the live call playback</p>
+              </div>
+            </div>
+          )}
         </motion.div>
       </div>
     </section>
