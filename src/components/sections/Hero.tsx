@@ -36,7 +36,7 @@ export function Hero() {
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
             <Button size="lg" className="w-full sm:w-auto text-base" asChild>
-              <Link href="#pricing">Start Free Trial</Link>
+              <a href="mailto:ritikksaklani@gmail.com?subject=Free%20Trial%20Request">Start Free Trial</a>
             </Button>
             <Button size="lg" variant="glass" className="w-full sm:w-auto text-base gap-2" asChild>
               <Link href="#demo">

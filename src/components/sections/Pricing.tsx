@@ -68,8 +68,8 @@ export function Pricing() {
                   + $3,000 one-time setup fee
                 </div>
 
-                <Button size="lg" className="w-full text-lg mb-4">
-                  Start Free 2-Week Trial
+                <Button size="lg" className="w-full text-lg mb-4" asChild>
+                  <a href="mailto:ritikksaklani@gmail.com?subject=Free%20Trial%20Request">Start Free 2-Week Trial</a>
                 </Button>
                 <p className="text-xs text-center text-gray-500">
                   Cancel anytime during your trial to not be billed.

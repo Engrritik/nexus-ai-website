@@ -57,7 +57,7 @@ export function Navbar() {
               <Link href="#contact">Contact</Link>
             </Button>
             <Button asChild>
-              <Link href="#pricing">Start Free Trial</Link>
+              <a href="mailto:ritikksaklani@gmail.com?subject=Free%20Trial%20Request">Start Free Trial</a>
             </Button>
           </div>
         </nav>
@@ -89,7 +89,7 @@ export function Navbar() {
               <Link href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
             </Button>
             <Button className="w-full" asChild>
-              <Link href="#pricing" onClick={() => setMobileMenuOpen(false)}>Start Free Trial</Link>
+              <a href="mailto:ritikksaklani@gmail.com?subject=Free%20Trial%20Request" onClick={() => setMobileMenuOpen(false)}>Start Free Trial</a>
             </Button>
           </div>
         </div>
