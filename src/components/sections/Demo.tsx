@@ -44,9 +44,10 @@ export function Demo() {
               onClick={() => setIsPlaying(true)}
             >
               <Image 
-                src="/tumb.png" 
+                src={"/tumb.png?v=" + new Date().getTime()} 
                 alt="Nexus AI Demo Thumbnail" 
-                fill 
+                fill
+                unoptimized
                 className="object-cover opacity-70 group-hover:scale-105 transition-all duration-700 ease-out z-0" 
               />
               
