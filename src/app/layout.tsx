@@ -11,7 +11,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Nexus AI | AI Voice Receptionist for Dental Clinics",
-  description: "Your Dental Clinic Answers Every Call. Even At 2AM. Nexus AI is an AI voice receptionist that answers missed calls, qualifies patients and books appointments automatically — 24/7.",
+  description: "Never miss a patient again. Nexus AI answers every call, qualifies patients and books appointments automatically 24/7.",
 };
 
 export default function RootLayout({
