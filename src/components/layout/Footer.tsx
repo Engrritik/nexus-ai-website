@@ -3,9 +3,7 @@ export function Footer() {
     <footer className="border-t border-white/10 bg-black py-12 md:py-16">
       <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="flex items-center gap-2">
-          <span className="text-xl font-bold tracking-tight text-white">
-            Nexus<span className="text-teal">AI</span>
-          </span>
+          <img src='/logo.png' alt='Nexus AI' style={{height: '32px', width: 'auto', background: 'transparent', mixBlendMode: 'screen'}} />
         </div>
         
         <p className="text-sm text-gray-500 text-center md:text-left">
