@@ -5,6 +5,7 @@ import { HowItWorks } from "@/components/sections/HowItWorks";
 import { SocialProof } from "@/components/sections/SocialProof";
 import { Pricing } from "@/components/sections/Pricing";
 import { Demo } from "@/components/sections/Demo";
+import { About } from "@/components/sections/About";
 import { Contact } from "@/components/sections/Contact";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
       <Solution />
       <HowItWorks />
       <Demo />
+      <About />
       <Pricing />
       <Contact />
     </>
