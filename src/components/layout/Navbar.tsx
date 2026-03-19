@@ -34,7 +34,7 @@ export function Navbar() {
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <img src='/logo.png' alt='Nexus AI' style={{height: '36px', width: 'auto'}} />
+          <img src='/logo.png' alt='Nexus AI' width={140} height={40} style={{height: '40px', width: '140px', objectFit: 'contain'}} />
         </Link>
 
         {/* Desktop Nav */}
