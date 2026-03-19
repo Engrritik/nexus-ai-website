@@ -33,12 +33,7 @@ export function Navbar() {
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="bg-teal p-2 rounded-lg flex items-center justify-center group-hover:shadow-[0_0_15px_rgba(0,212,170,0.5)] transition-shadow">
-            <PhoneCall className="w-5 h-5 text-black" />
-          </div>
-          <span className="text-xl font-bold tracking-tight text-white">
-            Nexus<span className="text-teal">AI</span>
-          </span>
+          <img src='/logo.png' alt='Nexus AI' style={{height: '36px', width: 'auto'}} />
         </Link>
 
         {/* Desktop Nav */}
