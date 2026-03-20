@@ -75,10 +75,10 @@ export function Problem() {
                 <PhoneMissed className="w-7 h-7 text-red-400" />
               </div>
               <div className="text-4xl md:text-5xl font-bold text-white mb-2">
-                <AnimatedCounter value={50} suffix="+" />
+                <AnimatedCounter value={25} suffix="%" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Missed Calls</h3>
-              <p className="text-gray-400">Average missed calls per month for a typical dental clinic.</p>
+              <p className="text-gray-400">Industry data shows 1 in 4 calls to dental clinics go unanswered.</p>
             </Card>
           </motion.div>
 
@@ -93,10 +93,10 @@ export function Problem() {
                 <TrendingDown className="w-7 h-7 text-red-400" />
               </div>
               <div className="text-4xl md:text-5xl font-bold text-white mb-2">
-                <AnimatedCounter value={10000} prefix="$" />
+                <AnimatedCounter value={4500} prefix="$" suffix="+" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Lost Revenue</h3>
-              <p className="text-gray-400">Estimated monthly revenue lost to competitors.</p>
+              <p className="text-gray-400">The average monthly revenue lost to competitors from missing just one new patient a day.</p>
             </Card>
           </motion.div>
 
@@ -111,10 +111,10 @@ export function Problem() {
                 <Voicemail className="w-7 h-7 text-red-400" />
               </div>
               <div className="text-4xl md:text-5xl font-bold text-white mb-2">
-                <AnimatedCounter value={80} suffix="%" />
+                <AnimatedCounter value={85} suffix="%" />
               </div>
               <h3 className="text-xl font-semibold mb-2">No Voicemail</h3>
-              <p className="text-gray-400">Of patients hang up instead of leaving a voicemail.</p>
+              <p className="text-gray-400">Of new patients will just hang up and call the next dentist on Google instead of leaving a message.</p>
             </Card>
           </motion.div>
         </div>
