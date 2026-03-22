@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { BackgroundScene } from "@/components/ui/BackgroundScene";
 
 export function Pricing() {
   const features = [
@@ -17,6 +18,9 @@ export function Pricing() {
 
   return (
     <section id="pricing" className="py-24 relative overflow-hidden bg-black/50 border-y border-white/5">
+      {/* Dynamic Background */}
+      <BackgroundScene variant="wave" color="#00d4aa" count={800} />
+      
       {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-teal/5 rounded-full blur-[150px] -z-10 pointer-events-none" />
       
@@ -50,7 +54,7 @@ export function Pricing() {
           >
             {/* Ribbon */}
             <div className="absolute top-6 -right-12 bg-teal text-black text-sm font-bold tracking-wider py-1.5 px-14 rotate-45">
-              FREE 14-DAY TRIAL
+              FREE 7-DAY TRIAL
             </div>
 
             <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -69,7 +73,7 @@ export function Pricing() {
                 </div>
 
                 <Button size="lg" className="w-full text-lg mb-4" asChild>
-                  <a href="mailto:ritikksaklani@gmail.com?subject=Free%20Trial%20Request">Start Free 2-Week Trial</a>
+                  <a href="mailto:ritikksaklani@gmail.com?subject=Free%20Trial%20Request">Start Free 7-Day Trial</a>
                 </Button>
                 <p className="text-xs text-center text-gray-500">
                   Cancel anytime during your trial to not be billed.

@@ -3,10 +3,12 @@
 import { Card } from "@/components/ui/Card";
 import { Clock, CalendarCheck, UserCheck } from "lucide-react";
 import { FadeAndRiseReveal } from "@/components/ui/FadeAndRiseReveal";
+import { BackgroundScene } from "@/components/ui/BackgroundScene";
 
 export function Solution() {
   return (
     <section id="solution" className="py-24 relative overflow-hidden">
+      <BackgroundScene variant="rise" color="#00d4aa" count={800} />
       {/* Background glow */}
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-teal/5 rounded-full blur-[120px] -z-10 pointer-events-none" />
       

@@ -3,10 +3,12 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { Mail, ArrowRight, Linkedin } from "lucide-react";
+import { BackgroundScene } from "@/components/ui/BackgroundScene";
 
 export function Contact() {
   return (
     <section id="contact" className="py-24 relative overflow-hidden bg-black">
+      <BackgroundScene variant="swirl" color="#aaaaaa" count={900} />
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-16 max-w-6xl mx-auto items-center">
           
@@ -20,8 +22,8 @@ export function Contact() {
               Ready to stop <br/>
               <span className="text-teal">missing patients?</span>
             </h2>
-            <p className="text-xl text-gray-400 mb-10 leading-relaxed">
-              Drop your details below and we&apos;ll be in touch to schedule your free setup and 14-day trial.
+            <p className="text-xl text-gray-400 mb-10 leading-relaxed relative z-10">
+              Drop your details below and we&apos;ll be in touch to schedule your free setup and 7-day trial.
             </p>
             
             <div className="space-y-6">

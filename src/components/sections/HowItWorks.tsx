@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { PhoneCall, Bot, CalendarDays } from "lucide-react";
 import { FadeAndRiseReveal } from "@/components/ui/FadeAndRiseReveal";
+import { BackgroundScene } from "@/components/ui/BackgroundScene";
 
 export function HowItWorks() {
   const steps = [
@@ -28,6 +29,7 @@ export function HowItWorks() {
 
   return (
     <section id="how-it-works" className="py-24 relative overflow-hidden bg-black/50 border-y border-white/5">
+      <BackgroundScene variant="swirl" color="#00d4aa" count={1000} />
       <div className="container mx-auto px-6">
         <FadeAndRiseReveal className="text-center max-w-3xl mx-auto mb-20">
           <div className="inline-block mb-4 px-4 py-1.5 rounded-full border border-teal/30 bg-teal/10 text-teal text-sm font-medium tracking-wide">

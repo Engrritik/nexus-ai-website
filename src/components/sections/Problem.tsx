@@ -5,6 +5,7 @@ import { motion, useInView, useMotionValue, useSpring, useTransform } from "fram
 import { Card } from "@/components/ui/Card";
 import { PhoneMissed, TrendingDown, Voicemail } from "lucide-react";
 import { FadeAndRiseReveal } from "@/components/ui/FadeAndRiseReveal";
+import { BackgroundScene } from "@/components/ui/BackgroundScene";
 
 // Helper component for animated numbers
 function AnimatedCounter({ value, prefix = "", suffix = "" }: { value: number, prefix?: string, suffix?: string }) {
@@ -37,6 +38,7 @@ function AnimatedCounter({ value, prefix = "", suffix = "" }: { value: number, p
 export function Problem() {
   return (
     <section id="problem" className="py-24 relative overflow-hidden">
+      <BackgroundScene variant="fall" color="#ff4444" count={800} />
       {/* Background glow */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-red-500/5 rounded-full blur-[100px] -z-10 pointer-events-none" />
       
