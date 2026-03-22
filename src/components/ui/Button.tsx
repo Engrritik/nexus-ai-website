@@ -31,7 +31,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     if (size === "lg") sizeStyles = "h-14 rounded-md px-8 text-lg";
     if (size === "icon") sizeStyles = "h-10 w-10";
 
-    const baseStyles = "relative overflow-hidden inline-flex items-center justify-center rounded-full text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 z-10";
+    const baseStyles = "relative overflow-hidden inline-flex items-center justify-center rounded-full text-sm font-semibold tracking-[0.01em] font-inter ring-offset-background disabled:pointer-events-none disabled:opacity-50 z-10 button-agency";
 
     React.useEffect(() => {
       if (coords.x !== -1 && coords.y !== -1) {

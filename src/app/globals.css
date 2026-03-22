@@ -124,12 +124,67 @@ body {
   border-color: #00f2c3 !important;
 }
 
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0; transform: scale(0.9); }
+  50% { opacity: 0.8; transform: scale(1.1); }
+}
+
+@keyframes slow-pulse-glow {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(0,212,170,0.3);
+  }
+  50% {
+    text-shadow: 0 0 60px rgba(0,212,170,0.8);
+  }
+}
+.animate-slow-pulse-glow {
+  animation: slow-pulse-glow 2s infinite ease-in-out;
+}
+
+@keyframes shimmer-fast {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(200%) skewX(-15deg); }
+}
+.animate-shimmer-fast {
+  animation: shimmer-fast 6s infinite linear;
+}
+
+@keyframes floating-drift {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -50px) scale(1.1); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes floating-drift-reverse {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-40px, 40px) scale(0.9); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
 @keyframes ripple-anim {
   0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
   100% { transform: translate(-50%, -50%) scale(20); opacity: 0; }
 }
 .animate-ripple {
   animation: ripple-anim 600ms linear forwards;
+}
+
+.card-agency {
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1) !important;
+}
+.card-agency:hover {
+  border-color: rgba(0,212,170,0.4) !important;
+  box-shadow: 0 20px 60px rgba(0,212,170,0.08), inset 0 0 20px rgba(0,212,170,0.05) !important;
+}
+
+.button-agency {
+  transition: transform 0.25s cubic-bezier(0.23, 1, 0.32, 1), background-color 0.25s, color 0.25s, box-shadow 0.25s !important;
+  cursor: pointer !important;
+}
+.button-agency:hover {
+  transform: scale(1.02);
+}
+.button-agency:active {
+  transform: scale(0.98);
 }
 
 @media (pointer: fine) {

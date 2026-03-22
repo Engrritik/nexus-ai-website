@@ -8,31 +8,34 @@ import { motion } from "framer-motion";
 
 export function Solution() {
   return (
-    <section id="solution" className="py-24 relative overflow-hidden">
-      <BackgroundScene variant="rise" color="#00d4aa" count={800} />
-      {/* Background glow */}
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-teal/5 rounded-full blur-[120px] -z-10 pointer-events-none" />
+    <section id="solution" className="py-24 relative overflow-hidden bg-[#050505]">
       
       <div className="container mx-auto px-6">
-        <FadeAndRiseReveal className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-block mb-4 px-4 py-1.5 rounded-full border border-teal/30 bg-teal/10 text-teal text-sm font-medium tracking-wide">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
+          <div className="inline-block mb-4 px-4 py-1.5 rounded-full border border-teal/30 bg-teal/10 text-teal text-[11px] font-mono font-medium tracking-[0.08em] uppercase">
             The Solution
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
+          <h2 className="text-3xl md:text-5xl font-bricolage font-bold mb-6 text-white tracking-[-0.02em] leading-[1.1]">
             Nexus AI answers every call. <br className="hidden md:block" />
-            <span className="gradient-text">Books every patient.</span>
+            <span className="text-teal">Books every patient.</span>
           </h2>
-          <p className="text-lg text-gray-400">
+          <p className="text-lg text-[#a0a0a0] font-inter">
             Our intelligent voice agent sounds like a human and handles your front desk operations effortlessly.
           </p>
-        </FadeAndRiseReveal>
+        </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto overflow-hidden px-4 md:px-0">
           <motion.div
-            initial={{ opacity: 0, x: -100 }}
+            initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, type: "spring", bounce: 0.2, delay: 0.1 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0 }}
           >
             <Card className="h-full hover:border-teal/30 transition-colors duration-300 group">
               <div className="w-12 h-12 rounded-lg bg-teal/10 flex items-center justify-center mb-6 text-teal group-hover:scale-110 transition-transform">
@@ -46,10 +49,10 @@ export function Solution() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 100 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, type: "spring", bounce: 0.2, delay: 0.2 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0 }}
           >
             <Card className="h-full hover:border-teal/30 transition-colors duration-300 group">
               <div className="w-12 h-12 rounded-lg bg-teal/10 flex items-center justify-center mb-6 text-teal group-hover:scale-110 transition-transform">
@@ -63,10 +66,10 @@ export function Solution() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 100 }}
+            initial={{ opacity: 0, x: 60 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, type: "spring", bounce: 0.2, delay: 0.3 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0 }}
           >
             <Card className="h-full hover:border-teal/30 transition-colors duration-300 group">
               <div className="w-12 h-12 rounded-lg bg-teal/10 flex items-center justify-center mb-6 text-teal group-hover:scale-110 transition-transform">

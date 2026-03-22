@@ -19,8 +19,8 @@ const Card = React.forwardRef<
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
     
-    const rotateXValue = ((y - centerY) / centerY) * -8;
-    const rotateYValue = ((x - centerX) / centerX) * 8;
+    const rotateXValue = Math.max(-2, Math.min(2, ((y - centerY) / centerY) * -2));
+    const rotateYValue = Math.max(-2, Math.min(2, ((x - centerX) / centerX) * 2));
     
     setRotateX(rotateXValue);
     setRotateY(rotateYValue);
@@ -39,7 +39,7 @@ const Card = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        "rounded-2xl mint-glass-card p-6 relative group transition-all duration-200 ease-out",
+        "rounded-2xl mint-glass-card p-6 relative group card-agency",
         className
       )}
       style={{

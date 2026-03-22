@@ -5,7 +5,6 @@ import { motion, useInView, useMotionValue, useSpring, useTransform } from "fram
 import { Card } from "@/components/ui/Card";
 import { PhoneMissed, TrendingDown, Voicemail } from "lucide-react";
 import { FadeAndRiseReveal } from "@/components/ui/FadeAndRiseReveal";
-import { BackgroundScene } from "@/components/ui/BackgroundScene";
 
 // Helper component for animated numbers
 function AnimatedCounter({ value, prefix = "", suffix = "" }: { value: number, prefix?: string, suffix?: string }) {
@@ -31,7 +30,7 @@ function AnimatedCounter({ value, prefix = "", suffix = "" }: { value: number, p
   }, [isInView, motionValue, value]);
 
   return (
-    <motion.span ref={ref} className={isFinished ? "text-[#00d4aa] drop-shadow-[0_0_15px_rgba(0,212,170,0.8)] transition-all duration-300" : "transition-all duration-300"}>
+    <motion.span ref={ref} className={isFinished ? "text-teal drop-shadow-[0_0_15px_rgba(0,212,170,0.8)] transition-all duration-300 font-bricolage font-extrabold tracking-[-0.04em]" : "transition-all duration-300 font-bricolage font-extrabold tracking-[-0.04em]"}>
       {displayValue}
     </motion.span>
   );
@@ -39,27 +38,29 @@ function AnimatedCounter({ value, prefix = "", suffix = "" }: { value: number, p
 
 export function Problem() {
   return (
-    <section id="problem" className="py-24 relative overflow-hidden">
-      <BackgroundScene variant="fall" color="#ff4444" count={800} />
-      {/* Background glow */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-red-500/5 rounded-full blur-[100px] -z-10 pointer-events-none" />
-      
+    <section id="problem" className="py-24 relative overflow-hidden bg-black">
       <div className="container mx-auto px-6">
-        <FadeAndRiseReveal className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
-            You&apos;re losing patients every day and <span className="text-red-400">you don&apos;t know it</span>
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
+          <h2 className="text-3xl md:text-5xl font-bricolage font-bold mb-6 text-white tracking-[-0.02em] leading-[1.1]">
+            You&apos;re losing patients every day and <span className="text-teal">you don&apos;t know it</span>
           </h2>
-          <p className="text-lg text-gray-400">
+          <p className="text-lg text-[#a0a0a0] font-inter">
             When your clinic is busy, closed, or understaffed, missed calls mean missed revenue.
           </p>
-        </FadeAndRiseReveal>
+        </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto" style={{ perspective: "1500px" }}>
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto" style={{ perspective: "800px" }}>
           <motion.div 
             initial={{ opacity: 0, rotateY: 90 }}
             whileInView={{ opacity: 1, rotateY: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, type: "spring", bounce: 0.4, delay: 0.1 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.6, delay: 0 }}
           >
             <Card className="flex flex-col items-center text-center hover:border-red-500/30 transition-colors duration-300 h-full">
               <div className="w-14 h-14 rounded-full bg-red-500/10 flex items-center justify-center mb-6">
@@ -76,8 +77,8 @@ export function Problem() {
           <motion.div 
             initial={{ opacity: 0, rotateY: 90 }}
             whileInView={{ opacity: 1, rotateY: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, type: "spring", bounce: 0.4, delay: 0.3 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
           >
             <Card className="flex flex-col items-center text-center hover:border-red-500/30 transition-colors duration-300 h-full">
               <div className="w-14 h-14 rounded-full bg-red-500/10 flex items-center justify-center mb-6">
@@ -94,8 +95,8 @@ export function Problem() {
           <motion.div 
             initial={{ opacity: 0, rotateY: 90 }}
             whileInView={{ opacity: 1, rotateY: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, type: "spring", bounce: 0.4, delay: 0.5 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
           >
             <Card className="flex flex-col items-center text-center hover:border-red-500/30 transition-colors duration-300 h-full">
               <div className="w-14 h-14 rounded-full bg-red-500/10 flex items-center justify-center mb-6">

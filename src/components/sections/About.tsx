@@ -12,9 +12,7 @@ export function About() {
   ];
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden bg-black/50 border-y border-white/5">
-      {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-teal/5 rounded-full blur-[150px] -z-10 pointer-events-none" />
+    <section id="about" className="py-24 relative overflow-hidden bg-[#050505]">
       
       <div className="container mx-auto px-6">
         <motion.div 
@@ -38,11 +36,11 @@ export function About() {
             
             {/* Left side: Profile Photo */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -80 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="md:col-span-4 flex justify-center md:justify-end"
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="md:col-span-4 h-full"
             >
               <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full p-2 bg-gradient-to-tr from-teal/20 to-teal/50">
                 <div className="w-full h-full rounded-full overflow-hidden border-4 border-black bg-black/80 relative">
@@ -61,12 +59,12 @@ export function About() {
 
             {/* Right side: Bio Card */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
+              initial={{ opacity: 0, x: 80 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="md:col-span-8"
-            >
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="md:col-span-8 h-full"
+            >  
               <Card className="p-8 md:p-10 border-teal/20">
                 <div className="mb-6 pb-6 border-b border-white/10">
                   <h3 className="text-3xl font-bold text-white mb-2">Ritik Kumar</h3>

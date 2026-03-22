@@ -14,7 +14,7 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 50);
       
       const sections = document.querySelectorAll("section[id]");
       let current = "";
@@ -43,13 +43,13 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-500 border-b ${
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ease-in-out border-b ${
         isScrolled
-          ? "bg-black/80 backdrop-blur-xl py-4 " + (pulseBorder ? "border-teal shadow-[0_4px_20px_rgba(0,212,170,0.3)]" : "border-white/10")
-          : "bg-transparent border-transparent py-6"
+          ? "bg-black/85 backdrop-blur-[20px] saturate-180 " + (pulseBorder ? "border-teal shadow-[0_4px_20px_rgba(0,212,170,0.3)]" : "border-teal/10")
+          : "bg-transparent border-transparent py-4"
       }`}
     >
-      <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
+      <div className="container mx-auto px-6 md:px-12 flex items-center justify-between py-2">
         <Link href="/" className="flex items-center gap-2 group relative">
           <img src='/logo.png' alt='Nexus AI' width={140} height={40} className="relative z-10" style={{height: '40px', width: '140px', objectFit: 'contain'}} />
           <div className="absolute inset-0 bg-teal/30 blur-xl opacity-0 animate-[pulse-glow_10s_ease-in-out_infinite] z-0 pointer-events-none rounded-full" />
@@ -61,12 +61,13 @@ export function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+              className="text-sm font-inter text-gray-300 hover:text-teal transition-colors relative group py-2"
             >
               {link.name}
+              <span className="absolute bottom-0 left-0 w-full h-[2px] bg-teal transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
             </Link>
           ))}
-          <div className="flex items-center gap-4 ml-4">
+          <div className="flex items-center gap-4 ml-2">
             <Button variant="ghost" asChild>
               <Link href="#contact">Contact</Link>
             </Button>

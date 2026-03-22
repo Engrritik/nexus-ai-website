@@ -46,10 +46,10 @@ export function Pricing() {
 
         <div className="max-w-4xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
+            initial={{ opacity: 0, scale: 0.85 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ type: "spring", bounce: 0.5, duration: 1.0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ type: "spring", stiffness: 200, damping: 20 }}
             className="rounded-3xl border border-teal/20 bg-black/80 glass p-8 md:p-12 relative overflow-hidden"
           >
             {/* Ribbon */}
