@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Card } from "@/components/ui/Card";
 import { Clock, CalendarCheck, UserCheck } from "lucide-react";
+import { FadeAndRiseReveal } from "@/components/ui/FadeAndRiseReveal";
 
 export function Solution() {
   return (
@@ -11,13 +11,7 @@ export function Solution() {
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-teal/5 rounded-full blur-[120px] -z-10 pointer-events-none" />
       
       <div className="container mx-auto px-6">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-16"
-        >
+        <FadeAndRiseReveal className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-block mb-4 px-4 py-1.5 rounded-full border border-teal/30 bg-teal/10 text-teal text-sm font-medium tracking-wide">
             The Solution
           </div>
@@ -28,15 +22,10 @@ export function Solution() {
           <p className="text-lg text-gray-400">
             Our intelligent voice agent sounds like a human and handles your front desk operations effortlessly.
           </p>
-        </motion.div>
+        </FadeAndRiseReveal>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
+          <FadeAndRiseReveal delay={0.1}>
             <Card className="h-full hover:border-teal/30 transition-colors duration-300 group">
               <div className="w-12 h-12 rounded-lg bg-teal/10 flex items-center justify-center mb-6 text-teal group-hover:scale-110 transition-transform">
                 <Clock className="w-6 h-6" />
@@ -46,14 +35,9 @@ export function Solution() {
                 Whether it&apos;s 2 AM on a Sunday or during the lunchtime rush, Nexus AI picks up on the first ring, every single time.
               </p>
             </Card>
-          </motion.div>
+          </FadeAndRiseReveal>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+          <FadeAndRiseReveal delay={0.2}>
             <Card className="h-full hover:border-teal/30 transition-colors duration-300 group">
               <div className="w-12 h-12 rounded-lg bg-teal/10 flex items-center justify-center mb-6 text-teal group-hover:scale-110 transition-transform">
                 <UserCheck className="w-6 h-6" />
@@ -63,14 +47,9 @@ export function Solution() {
                 Asks the right questions to understand patient needs, verifies insurance types, and filters out spam calls intelligently.
               </p>
             </Card>
-          </motion.div>
+          </FadeAndRiseReveal>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
+          <FadeAndRiseReveal delay={0.3}>
             <Card className="h-full hover:border-teal/30 transition-colors duration-300 group">
               <div className="w-12 h-12 rounded-lg bg-teal/10 flex items-center justify-center mb-6 text-teal group-hover:scale-110 transition-transform">
                 <CalendarCheck className="w-6 h-6" />
@@ -80,7 +59,7 @@ export function Solution() {
                 Integrates seamlessly with your existing practice management software to schedule appointments directly into your calendar.
               </p>
             </Card>
-          </motion.div>
+          </FadeAndRiseReveal>
         </div>
       </div>
     </section>

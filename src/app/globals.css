@@ -29,6 +29,19 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.mint-glass-card {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease-out;
+}
+
+.mint-glass-card:hover {
+  border-color: #00f2c3;
+  box-shadow: 0 0 20px rgba(0, 242, 195, 0.2);
+}
+
 .gradient-text {
   background: linear-gradient(to right, #00d4aa, #ffffff);
   -webkit-background-clip: text;

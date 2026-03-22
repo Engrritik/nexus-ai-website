@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useEffect, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 import * as THREE from "three";
@@ -22,7 +22,20 @@ function WaveParticles() {
     return positions;
   }, [count]);
 
-  useFrame((state) => {
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      setMouse({
+        x: (event.clientX / window.innerWidth) * 2 - 1,
+        y: -(event.clientY / window.innerHeight) * 2 + 1,
+      });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  useFrame((state, delta) => {
     if (!ref.current) return;
     const time = state.clock.getElapsedTime();
     const positionsArray = ref.current.geometry.attributes.position.array as Float32Array;
@@ -34,7 +47,17 @@ function WaveParticles() {
       positionsArray[i * 3 + 1] = Math.sin(time + x + z) * 0.5;
     }
     ref.current.geometry.attributes.position.needsUpdate = true;
-    ref.current.rotation.y = time * 0.05;
+    
+    // Ambient breathing scale
+    const scale = 1 + Math.sin(time * 0.5) * 0.05;
+    ref.current.scale.set(scale, scale, scale);
+
+    // Smooth response to mouse + slow ambient rotation
+    const targetRotationX = mouse.y * 0.1;
+    const targetRotationY = time * 0.05 + mouse.x * 0.1;
+
+    ref.current.rotation.x += (targetRotationX - ref.current.rotation.x) * 2 * delta;
+    ref.current.rotation.y += (targetRotationY - ref.current.rotation.y) * 2 * delta;
   });
 
   return (
