@@ -188,10 +188,7 @@ body {
 }
 
 @media (pointer: fine) {
-  body {
-    cursor: none;
-  }
-  a, button, input, textarea {
+  * {
     cursor: none !important;
   }
 }

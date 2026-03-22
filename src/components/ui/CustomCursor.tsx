@@ -1,61 +1,94 @@
-"use client";
-import { useEffect, useState } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+'use client';
+import { useEffect, useRef } from 'react';
 
 export function CustomCursor() {
-  const [variant, setVariant] = useState<"default" | "button" | "text">("default");
-  
-  // Start offscreen
-  const mouseX = useMotionValue(-100);
-  const mouseY = useMotionValue(-100);
-
-  const springConfig = { damping: 25, stiffness: 150, mass: 0.5 };
-  const cursorX = useSpring(mouseX, springConfig);
-  const cursorY = useSpring(mouseY, springConfig);
+  const dotRef = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
+  const pos = useRef({ x: 0, y: 0 });
+  const ring = useRef({ x: 0, y: 0 });
+  const rafRef = useRef<number>(0);
 
   useEffect(() => {
-    const moveCursor = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
-    };
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) return;
 
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (target.closest('a') || target.closest('button')) {
-        setVariant("button");
-      } else if (target.closest('p, h1, h2, h3, span, li')) {
-        setVariant("text");
-      } else {
-        setVariant("default");
+    const moveDot = (e: MouseEvent) => {
+      pos.current = { x: e.clientX, y: e.clientY };
+      if (dotRef.current) {
+        dotRef.current.style.transform = 
+          `translate(${e.clientX}px, ${e.clientY}px)`;
       }
     };
 
-    window.addEventListener("mousemove", moveCursor);
-    window.addEventListener("mouseover", handleMouseOver);
+    const animateRing = () => {
+      ring.current.x += (pos.current.x - ring.current.x) * 0.12;
+      ring.current.y += (pos.current.y - ring.current.y) * 0.12;
+      if (ringRef.current) {
+        ringRef.current.style.transform = 
+          `translate(${ring.current.x}px, ${ring.current.y}px)`;
+      }
+      rafRef.current = requestAnimationFrame(animateRing);
+    };
+
+    const handleMouseEnter = () => {
+      if (dotRef.current) dotRef.current.style.opacity = '1';
+      if (ringRef.current) ringRef.current.style.opacity = '1';
+    };
+
+    const handleMouseLeave = () => {
+      if (dotRef.current) dotRef.current.style.opacity = '0';
+      if (ringRef.current) ringRef.current.style.opacity = '0';
+    };
+
+    window.addEventListener('mousemove', moveDot, { passive: true });
+    document.addEventListener('mouseenter', handleMouseEnter);
+    document.addEventListener('mouseleave', handleMouseLeave);
+    rafRef.current = requestAnimationFrame(animateRing);
 
     return () => {
-      window.removeEventListener("mousemove", moveCursor);
-      window.removeEventListener("mouseover", handleMouseOver);
+      window.removeEventListener('mousemove', moveDot);
+      document.removeEventListener('mouseenter', handleMouseEnter);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [mouseX, mouseY]);
+  }, []);
 
   return (
-    <motion.div
-      className="fixed top-0 left-0 z-[9999] pointer-events-none hidden md:block" // Hidden on mobile
-      style={{
-        x: cursorX,
-        y: cursorY,
-        translateX: "-50%",
-        translateY: "-50%"
-      }}
-      initial="default"
-      animate={variant}
-      variants={{
-        default: { width: 12, height: 12, borderRadius: "50%", backgroundColor: "#00d4aa", border: "0px solid transparent" },
-        button: { width: 48, height: 48, borderRadius: "50%", backgroundColor: "transparent", border: "2px solid #00d4aa" },
-        text: { width: 4, height: 28, borderRadius: "2px", backgroundColor: "#00f2c3", border: "0px solid transparent" }
-      }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-    />
+    <>
+      <div
+        ref={dotRef}
+        style={{
+          position: 'fixed',
+          top: -4,
+          left: -4,
+          width: 8,
+          height: 8,
+          background: '#00d4aa',
+          borderRadius: '50%',
+          pointerEvents: 'none',
+          zIndex: 99999,
+          willChange: 'transform',
+          opacity: 0,
+          transition: 'opacity 0.3s',
+        }}
+      />
+      <div
+        ref={ringRef}
+        style={{
+          position: 'fixed',
+          top: -16,
+          left: -16,
+          width: 32,
+          height: 32,
+          border: '1px solid rgba(0,212,170,0.6)',
+          borderRadius: '50%',
+          pointerEvents: 'none',
+          zIndex: 99998,
+          willChange: 'transform',
+          opacity: 0,
+          transition: 'opacity 0.3s',
+        }}
+      />
+    </>
   );
 }
