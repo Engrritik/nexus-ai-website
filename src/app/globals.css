@@ -49,3 +49,105 @@ body {
   background-clip: text;
 }
 
+/* Base custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+::-webkit-scrollbar-thumb {
+  background: #00d4aa;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00f2c3;
+  box-shadow: 0 0 10px #00d4aa;
+}
+
+/* Base interactive animations */
+@keyframes shimmer-sweep {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(200%) skewX(-15deg); }
+}
+.animate-shimmer {
+  animation: shimmer-sweep 8s infinite linear;
+}
+
+@keyframes neon-pulse {
+  0%, 100% { text-shadow: 0 0 10px rgba(0,212,170,0.8), 0 0 20px rgba(0,212,170,0.5); opacity: 1; }
+  50% { text-shadow: 0 0 5px rgba(0,212,170,0.3); opacity: 0.7; }
+}
+.animate-pulse-neon {
+  animation: neon-pulse 3s infinite ease-in-out;
+}
+
+.neural-bg {
+  background: linear-gradient(-45deg, #000000, #00221b, #000810, #000000);
+  background-size: 300% 300%;
+  animation: bg-shift 20s ease infinite;
+}
+@keyframes bg-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Liquid Button Fill */
+.button-liquid {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.button-liquid span {
+  position: relative;
+  z-index: 2;
+}
+.button-liquid::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #00f2c3;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: bottom;
+  transform: scaleY(0);
+  z-index: -1;
+}
+.button-liquid:hover::after {
+  transform: scaleY(1);
+}
+.button-liquid:hover {
+  color: black !important;
+  text-shadow: 0 0 5px rgba(0,0,0,0.2) !important;
+  border-color: #00f2c3 !important;
+}
+
+@keyframes ripple-anim {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(20); opacity: 0; }
+}
+.animate-ripple {
+  animation: ripple-anim 600ms linear forwards;
+}
+
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+  a, button, input, textarea {
+    cursor: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

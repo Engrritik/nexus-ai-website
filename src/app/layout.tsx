@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { NeuralBackground } from "@/components/ui/NeuralBackground";
+import { CustomCursor } from "@/components/ui/CustomCursor";
 import "./globals.css";
 
 const inter = Inter({
@@ -24,7 +26,9 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} h-full antialiased dark`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground antialiased selection:bg-teal selection:text-background">
+      <body className="min-h-full flex flex-col bg-transparent text-foreground antialiased selection:bg-teal selection:text-background">
+        <CustomCursor />
+        <NeuralBackground />
         <Navbar />
         <main className="flex-1">
           {children}
