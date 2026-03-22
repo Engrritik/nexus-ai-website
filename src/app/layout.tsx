@@ -1,13 +1,25 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { NeuralBackground } from "@/components/ui/NeuralBackground";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
+  weight: ["400", "500", "600"],
+  subsets: ["latin"],
+});
+
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
+  weight: ["400", "500", "600", "700", "800"],
+  subsets: ["latin"],
+});
+
+const jetbrains = JetBrains_Mono({
+  variable: "--font-mono",
+  weight: ["400", "500"],
   subsets: ["latin"],
 });
 
@@ -26,9 +38,8 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} h-full antialiased dark`}
     >
-      <body className="min-h-full flex flex-col bg-transparent text-foreground antialiased selection:bg-teal selection:text-background">
+      <body className={`min-h-full flex flex-col bg-transparent text-foreground antialiased selection:bg-teal selection:text-background font-sans ${inter.variable} ${bricolage.variable} ${jetbrains.variable}`}>
         <CustomCursor />
-        <NeuralBackground />
         <Navbar />
         <main className="flex-1">
           {children}

@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/Card";
 import { Clock, CalendarCheck, UserCheck } from "lucide-react";
 import { FadeAndRiseReveal } from "@/components/ui/FadeAndRiseReveal";
 import { BackgroundScene } from "@/components/ui/BackgroundScene";
+import { motion } from "framer-motion";
 
 export function Solution() {
   return (
@@ -26,8 +27,13 @@ export function Solution() {
           </p>
         </FadeAndRiseReveal>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          <FadeAndRiseReveal delay={0.1}>
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto overflow-hidden px-4 md:px-0">
+          <motion.div
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, type: "spring", bounce: 0.2, delay: 0.1 }}
+          >
             <Card className="h-full hover:border-teal/30 transition-colors duration-300 group">
               <div className="w-12 h-12 rounded-lg bg-teal/10 flex items-center justify-center mb-6 text-teal group-hover:scale-110 transition-transform">
                 <Clock className="w-6 h-6" />
@@ -37,9 +43,14 @@ export function Solution() {
                 Whether it&apos;s 2 AM on a Sunday or during the lunchtime rush, Nexus AI picks up on the first ring, every single time.
               </p>
             </Card>
-          </FadeAndRiseReveal>
+          </motion.div>
 
-          <FadeAndRiseReveal delay={0.2}>
+          <motion.div
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, type: "spring", bounce: 0.2, delay: 0.2 }}
+          >
             <Card className="h-full hover:border-teal/30 transition-colors duration-300 group">
               <div className="w-12 h-12 rounded-lg bg-teal/10 flex items-center justify-center mb-6 text-teal group-hover:scale-110 transition-transform">
                 <UserCheck className="w-6 h-6" />
@@ -49,9 +60,14 @@ export function Solution() {
                 Asks the right questions to understand patient needs, verifies insurance types, and filters out spam calls intelligently.
               </p>
             </Card>
-          </FadeAndRiseReveal>
+          </motion.div>
 
-          <FadeAndRiseReveal delay={0.3}>
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, type: "spring", bounce: 0.2, delay: 0.3 }}
+          >
             <Card className="h-full hover:border-teal/30 transition-colors duration-300 group">
               <div className="w-12 h-12 rounded-lg bg-teal/10 flex items-center justify-center mb-6 text-teal group-hover:scale-110 transition-transform">
                 <CalendarCheck className="w-6 h-6" />
@@ -61,7 +77,7 @@ export function Solution() {
                 Integrates seamlessly with your existing practice management software to schedule appointments directly into your calendar.
               </p>
             </Card>
-          </FadeAndRiseReveal>
+          </motion.div>
         </div>
       </div>
     </section>

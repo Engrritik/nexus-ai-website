@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Card } from "@/components/ui/Card";
 import { PhoneMissed, TrendingDown, Voicemail } from "lucide-react";
@@ -11,11 +11,12 @@ import { BackgroundScene } from "@/components/ui/BackgroundScene";
 function AnimatedCounter({ value, prefix = "", suffix = "" }: { value: number, prefix?: string, suffix?: string }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [isFinished, setIsFinished] = useState(false);
 
   const motionValue = useMotionValue(0);
   const springValue = useSpring(motionValue, {
-    damping: 50,
-    stiffness: 100,
+    damping: 30,
+    stiffness: 250,
   });
 
   const displayValue = useTransform(springValue, (current) => 
@@ -25,11 +26,12 @@ function AnimatedCounter({ value, prefix = "", suffix = "" }: { value: number, p
   useEffect(() => {
     if (isInView) {
       motionValue.set(value);
+      setTimeout(() => setIsFinished(true), 1200);
     }
   }, [isInView, motionValue, value]);
 
   return (
-    <motion.span ref={ref}>
+    <motion.span ref={ref} className={isFinished ? "text-[#00d4aa] drop-shadow-[0_0_15px_rgba(0,212,170,0.8)] transition-all duration-300" : "transition-all duration-300"}>
       {displayValue}
     </motion.span>
   );
@@ -52,9 +54,14 @@ export function Problem() {
           </p>
         </FadeAndRiseReveal>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          <FadeAndRiseReveal delay={0.1}>
-            <Card className="flex flex-col items-center text-center hover:border-red-500/30 transition-colors duration-300">
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto" style={{ perspective: "1500px" }}>
+          <motion.div 
+            initial={{ opacity: 0, rotateY: 90 }}
+            whileInView={{ opacity: 1, rotateY: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, type: "spring", bounce: 0.4, delay: 0.1 }}
+          >
+            <Card className="flex flex-col items-center text-center hover:border-red-500/30 transition-colors duration-300 h-full">
               <div className="w-14 h-14 rounded-full bg-red-500/10 flex items-center justify-center mb-6">
                 <PhoneMissed className="w-7 h-7 text-red-400" />
               </div>
@@ -64,10 +71,15 @@ export function Problem() {
               <h3 className="text-xl font-semibold mb-2">Missed Calls</h3>
               <p className="text-gray-400">Industry data shows 1 in 4 calls to dental clinics go unanswered.</p>
             </Card>
-          </FadeAndRiseReveal>
+          </motion.div>
 
-          <FadeAndRiseReveal delay={0.2}>
-            <Card className="flex flex-col items-center text-center hover:border-red-500/30 transition-colors duration-300">
+          <motion.div 
+            initial={{ opacity: 0, rotateY: 90 }}
+            whileInView={{ opacity: 1, rotateY: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, type: "spring", bounce: 0.4, delay: 0.3 }}
+          >
+            <Card className="flex flex-col items-center text-center hover:border-red-500/30 transition-colors duration-300 h-full">
               <div className="w-14 h-14 rounded-full bg-red-500/10 flex items-center justify-center mb-6">
                 <TrendingDown className="w-7 h-7 text-red-400" />
               </div>
@@ -77,10 +89,15 @@ export function Problem() {
               <h3 className="text-xl font-semibold mb-2">Lost Revenue</h3>
               <p className="text-gray-400">The average monthly revenue lost to competitors from missing just one new patient a day.</p>
             </Card>
-          </FadeAndRiseReveal>
+          </motion.div>
 
-          <FadeAndRiseReveal delay={0.3}>
-            <Card className="flex flex-col items-center text-center hover:border-red-500/30 transition-colors duration-300">
+          <motion.div 
+            initial={{ opacity: 0, rotateY: 90 }}
+            whileInView={{ opacity: 1, rotateY: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, type: "spring", bounce: 0.4, delay: 0.5 }}
+          >
+            <Card className="flex flex-col items-center text-center hover:border-red-500/30 transition-colors duration-300 h-full">
               <div className="w-14 h-14 rounded-full bg-red-500/10 flex items-center justify-center mb-6">
                 <Voicemail className="w-7 h-7 text-red-400" />
               </div>
@@ -90,7 +107,7 @@ export function Problem() {
               <h3 className="text-xl font-semibold mb-2">No Voicemail</h3>
               <p className="text-gray-400">Of new patients will just hang up and call the next dentist on Google instead of leaving a message.</p>
             </Card>
-          </FadeAndRiseReveal>
+          </motion.div>
         </div>
       </div>
     </section>

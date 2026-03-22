@@ -57,32 +57,34 @@ export function Contact() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6 }}
           >
             <div className="glass bg-black/40 border border-white/10 rounded-3xl p-8 backdrop-blur-xl">
               <form action="https://formspree.io/f/myknoypk" method="POST" className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
+                  <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium text-gray-300">Full Name</label>
                     <input name="name" required type="text" id="name" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-teal/50 transition-all placeholder:text-gray-600" placeholder="Dr. John Smith" />
-                  </div>
-                  <div className="space-y-2">
+                  </motion.div>
+                  <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="space-y-2">
                     <label htmlFor="clinic" className="text-sm font-medium text-gray-300">Clinic Name</label>
                     <input name="clinic" required type="text" id="clinic" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-teal/50 transition-all placeholder:text-gray-600" placeholder="Smile Dental" />
-                  </div>
+                  </motion.div>
                 </div>
-                <div className="space-y-2">
+                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="space-y-2">
                   <label htmlFor="email" className="text-sm font-medium text-gray-300">Email Address</label>
                   <input name="email" required type="email" id="email" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-teal/50 transition-all placeholder:text-gray-600" placeholder="john@smiledental.com" />
-                </div>
-                <div className="space-y-2">
+                </motion.div>
+                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="space-y-2">
                   <label htmlFor="phone" className="text-sm font-medium text-gray-300">Phone Number</label>
                   <input name="phone" required type="tel" id="phone" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-teal/50 transition-all placeholder:text-gray-600" placeholder="(555) 123-4567" />
-                </div>
+                </motion.div>
                 
-                <Button type="submit" size="lg" className="w-full text-lg mt-4">
-                  Get Started <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
+                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
+                  <Button type="submit" size="lg" className="w-full text-lg mt-4">
+                    Get Started <ArrowRight className="w-5 h-5 ml-2" />
+                  </Button>
+                </motion.div>
               </form>
             </div>
           </motion.div>

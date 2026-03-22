@@ -9,10 +9,27 @@ import { Button } from "@/components/ui/Button";
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+  const [pulseBorder, setPulseBorder] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+      
+      const sections = document.querySelectorAll("section[id]");
+      let current = "";
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 100 && rect.bottom >= 100) {
+          current = section.getAttribute("id") || "";
+        }
+      });
+      
+      if (current && current !== activeSection) {
+        setActiveSection(current);
+        setPulseBorder(true);
+        setTimeout(() => setPulseBorder(false), 1000);
+      }
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -26,15 +43,16 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${
+      className={`fixed top-0 w-full z-50 transition-all duration-500 border-b ${
         isScrolled
-          ? "bg-black/70 backdrop-blur-md border-white/10 py-4"
+          ? "bg-black/80 backdrop-blur-xl py-4 " + (pulseBorder ? "border-teal shadow-[0_4px_20px_rgba(0,212,170,0.3)]" : "border-white/10")
           : "bg-transparent border-transparent py-6"
       }`}
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 group">
-          <img src='/logo.png' alt='Nexus AI' width={140} height={40} style={{height: '40px', width: '140px', objectFit: 'contain'}} />
+        <Link href="/" className="flex items-center gap-2 group relative">
+          <img src='/logo.png' alt='Nexus AI' width={140} height={40} className="relative z-10" style={{height: '40px', width: '140px', objectFit: 'contain'}} />
+          <div className="absolute inset-0 bg-teal/30 blur-xl opacity-0 animate-[pulse-glow_10s_ease-in-out_infinite] z-0 pointer-events-none rounded-full" />
         </Link>
 
         {/* Desktop Nav */}

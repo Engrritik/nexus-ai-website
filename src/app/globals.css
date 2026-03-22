@@ -51,18 +51,17 @@ body {
 
 /* Base custom scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: #050505;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #00d4aa;
-  border-radius: 3px;
+  background: rgba(0,212,170,0.4);
+  border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #00f2c3;
-  box-shadow: 0 0 10px #00d4aa;
+  background: rgba(0,212,170,0.8);
 }
 
 /* Base interactive animations */
