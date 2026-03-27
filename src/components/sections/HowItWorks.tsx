@@ -32,8 +32,8 @@ export function HowItWorks() {
   const pathLength = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="how-it-works" className="py-24 relative overflow-hidden bg-black border-y border-white/5">
-      <div className="container mx-auto px-6">
+    <section id="how-it-works" className="py-24 relative overflow-hidden bg-transparent border-y border-white/5">
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -47,7 +47,7 @@ export function HowItWorks() {
           <h2 className="text-3xl md:text-5xl font-bricolage font-bold mb-6 text-white leading-[1.1] tracking-[-0.02em]">
             From missed call to <span className="text-teal">booked patient</span>
           </h2>
-          <p className="text-lg text-[#a0a0a0] font-inter">
+          <p className="text-lg text-[#A1A1AA] font-inter">
             Three simple steps that happen automatically in under two minutes.
           </p>
         </motion.div>
@@ -99,7 +99,7 @@ export function HowItWorks() {
                   className="relative z-10 w-full flex flex-col items-center md:items-center text-center"
                 >
                   <h3 className="text-xl md:text-2xl font-bricolage font-bold mb-3 text-white tracking-[-0.02em] leading-[1.1]">{step.title}</h3>
-                  <p className="text-[#a0a0a0] leading-[1.7] text-base font-inter">
+                  <p className="text-[#A1A1AA] leading-[1.7] text-base font-inter">
                     {step.description}
                   </p>
                 </motion.div>

@@ -38,8 +38,8 @@ function AnimatedCounter({ value, prefix = "", suffix = "" }: { value: number, p
 
 export function Problem() {
   return (
-    <section id="problem" className="py-[100px] relative overflow-hidden bg-white">
-      <div className="container mx-auto px-6">
+    <section id="problem" className="py-[100px] relative overflow-hidden bg-transparent">
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -47,10 +47,10 @@ export function Problem() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <h2 className="text-[48px] md:text-5xl font-bricolage font-bold mb-6 text-[#1A365D] tracking-[-0.02em] leading-[1.1]">
-            You're losing patients every day and <span className="text-[#3182CE]">you don't know it</span>
+          <h2 className="text-[48px] md:text-5xl font-bricolage font-bold mb-6 text-white tracking-[-0.02em] leading-[1.1]">
+            You're losing patients every day and <span className="text-teal">you don't know it</span>
           </h2>
-          <p className="text-lg text-[#a0a0a0] font-inter">
+          <p className="text-lg text-[#A1A1AA] font-inter">
             When your clinic is busy, closed, or understaffed, missed calls mean missed revenue.
           </p>
         </motion.div>
@@ -62,15 +62,15 @@ export function Problem() {
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.6, delay: 0 }}
           >
-            <Card className="flex flex-col items-center text-center hover:border-red-500/30 transition-colors duration-300 h-full">
+            <Card className="flex flex-col items-center text-center glow-card border-white/5 bg-black/40 h-full p-8 rounded-3xl backdrop-blur-md">
               <div className="w-14 h-14 rounded-full bg-red-500/10 flex items-center justify-center mb-6">
-                <PhoneMissed className="w-7 h-7 text-red-400" />
+                <PhoneMissed className="w-7 h-7 text-red-500" />
               </div>
-              <div className="text-4xl md:text-5xl font-bold text-[#1A365D] mb-2">
+              <div className="text-4xl md:text-5xl font-bold text-white mb-2">
                 <AnimatedCounter value={25} suffix="%" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-[#1A365D]">Missed Calls</h3>
-              <p className="text-gray-600">25% of all incoming calls go unanswered.</p>
+              <h3 className="text-xl font-semibold mb-2 text-white">Missed Calls</h3>
+              <p className="text-[#A1A1AA]">25% of all incoming calls go unanswered.</p>
             </Card>
           </motion.div>
 
@@ -80,15 +80,15 @@ export function Problem() {
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
-            <Card className="flex flex-col items-center text-center hover:border-red-500/30 transition-colors duration-300 h-full">
+            <Card className="flex flex-col items-center text-center glow-card border-white/5 bg-black/40 h-full p-8 rounded-3xl backdrop-blur-md">
               <div className="w-14 h-14 rounded-full bg-red-500/10 flex items-center justify-center mb-6">
-                <TrendingDown className="w-7 h-7 text-red-400" />
+                <TrendingDown className="w-7 h-7 text-red-500" />
               </div>
-              <div className="text-4xl md:text-5xl font-bold text-[#1A365D] mb-2">
+              <div className="text-4xl md:text-5xl font-bold text-white mb-2">
                 <AnimatedCounter value={10000} prefix="$" suffix="+" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-[#1A365D]">Lost Revenue</h3>
-              <p className="text-gray-600">$10,000+ Average Monthly Revenue Lost.</p>
+              <h3 className="text-xl font-semibold mb-2 text-white">Lost Revenue</h3>
+              <p className="text-[#A1A1AA]">$10,000+ Average Monthly Revenue Lost.</p>
             </Card>
           </motion.div>
 
@@ -98,15 +98,15 @@ export function Problem() {
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <Card className="flex flex-col items-center text-center hover:border-red-500/30 transition-colors duration-300 h-full">
+            <Card className="flex flex-col items-center text-center glow-card border-white/5 bg-black/40 h-full p-8 rounded-3xl backdrop-blur-md">
               <div className="w-14 h-14 rounded-full bg-red-500/10 flex items-center justify-center mb-6">
-                <Voicemail className="w-7 h-7 text-red-400" />
+                <Voicemail className="w-7 h-7 text-red-500" />
               </div>
-              <div className="text-4xl md:text-5xl font-bold text-[#1A365D] mb-2">
+              <div className="text-4xl md:text-5xl font-bold text-white mb-2">
                 <AnimatedCounter value={80} suffix="%" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-[#1A365D]">No Voicemail</h3>
-              <p className="text-gray-600">80% of New Patients Hang Up instead of leaving a message.</p>
+              <h3 className="text-xl font-semibold mb-2 text-white">No Voicemail</h3>
+              <p className="text-[#A1A1AA]">80% of New Patients Hang Up instead of leaving a message.</p>
             </Card>
           </motion.div>
         </div>

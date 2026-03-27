@@ -39,7 +39,13 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} h-full antialiased dark`}
     >
-      <body className={`min-h-full flex flex-col bg-transparent text-foreground antialiased selection:bg-teal selection:text-background font-sans ${inter.variable} ${bricolage.variable} ${jetbrains.variable}`}>
+      <body className={`min-h-full flex flex-col bg-black text-foreground antialiased selection:bg-teal selection:text-black font-sans ${inter.variable} ${bricolage.variable} ${jetbrains.variable}`}>
+        {/* Global Dark Theme Backgrounds */}
+        <div className="fixed inset-0 z-[-1] pointer-events-none bg-black">
+          <div className="absolute inset-0 bg-grid opacity-40" />
+          <div className="absolute inset-0 aurora-top-left" />
+          <div className="absolute inset-0 aurora-bottom-right" />
+        </div>
         <SmoothScrolling>
           <CustomCursor />
           <Navbar />

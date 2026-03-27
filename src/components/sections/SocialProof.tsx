@@ -6,7 +6,7 @@ export function SocialProof() {
   const cities = ["Houston", "Dallas", "Atlanta", "Phoenix", "Denver", "Las Vegas"];
 
   return (
-    <section className="py-12 border-b border-white/5 bg-[#030303]">
+    <section className="py-12 border-b border-white/5 bg-transparent relative z-10">
       <div className="container mx-auto px-6 overflow-hidden">
         <p className="text-center text-gray-400 text-sm tracking-widest uppercase mb-8 font-medium">
           Engineered for High-Growth Practices in:
@@ -20,7 +20,7 @@ export function SocialProof() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="flex items-center text-xl md:text-2xl font-bold text-gray-600 uppercase tracking-wider"
+              className="flex items-center text-xl md:text-2xl font-bold text-gray-500 uppercase tracking-wider"
             >
               {city}
             </motion.div>

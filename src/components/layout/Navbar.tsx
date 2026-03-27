@@ -71,7 +71,7 @@ export function Navbar() {
             <Button variant="ghost" asChild>
               <Link href="#contact">Contact</Link>
             </Button>
-            <Button className="bg-[#3182CE] hover:bg-[#2b6cb0] text-white border-none" asChild>
+            <Button className="bg-teal neon-box-shadow text-black border-none transition-all duration-300 hover:scale-105" asChild>
               <Link href="#contact">Book a Free 15-Min Demo</Link>
             </Button>
           </div>
@@ -103,7 +103,7 @@ export function Navbar() {
             <Button variant="outline" className="w-full" asChild>
               <Link href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
             </Button>
-            <Button className="w-full bg-[#3182CE] hover:bg-[#2b6cb0] text-white border-none" asChild>
+            <Button className="w-full bg-teal neon-box-shadow text-black border-none transition-all duration-300 hover:scale-105" asChild>
               <Link href="#contact" onClick={() => setMobileMenuOpen(false)}>Book a Free 15-Min Demo</Link>
             </Button>
           </div>

@@ -1,6 +1,6 @@
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-black py-12 md:py-16">
+    <footer className="border-t border-white/10 bg-transparent py-12 md:py-16 relative z-10 w-full">
       <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="flex items-center gap-2">
           <img src='/logo.png' alt='Nexus AI' style={{height: '32px', width: 'auto', background: 'transparent', mixBlendMode: 'screen'}} />
