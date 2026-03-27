@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter, Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { CustomCursor } from "@/components/ui/CustomCursor";
 import { SmoothScrolling } from "@/components/ui/SmoothScrolling";
 import "./globals.css";
 
@@ -47,7 +46,6 @@ export default function RootLayout({
           <div className="absolute inset-0 aurora-bottom-right" />
         </div>
         <SmoothScrolling>
-          <CustomCursor />
           <Navbar />
           <main className="flex-1">
             {children}

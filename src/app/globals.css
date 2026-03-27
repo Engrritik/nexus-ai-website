@@ -187,11 +187,6 @@ body {
   transform: scale(0.98);
 }
 
-@media (pointer: fine) {
-  * {
-    cursor: none !important;
-  }
-}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
