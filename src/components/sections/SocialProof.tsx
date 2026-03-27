@@ -8,8 +8,8 @@ export function SocialProof() {
   return (
     <section className="py-12 border-b border-white/5 bg-[#030303]">
       <div className="container mx-auto px-6 overflow-hidden">
-        <p className="text-center text-gray-500 text-sm tracking-widest uppercase mb-8 font-medium">
-          Trusted by top-rated dental clinics across
+        <p className="text-center text-gray-400 text-sm tracking-widest uppercase mb-8 font-medium">
+          Engineered for High-Growth Practices in:
         </p>
 
         <div className="flex flex-wrap justify-center gap-4 md:gap-8 lg:gap-12 opacity-70">

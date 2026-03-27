@@ -8,7 +8,7 @@ export function Demo() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
-    <section id="demo" className="py-24 relative overflow-hidden">
+    <section id="demo" className="py-[100px] relative overflow-hidden bg-white">
       <div className="container mx-auto px-6">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -17,13 +17,13 @@ export function Demo() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <div className="inline-block mb-4 px-4 py-1.5 rounded-full border border-teal/30 bg-teal/10 text-teal text-sm font-medium tracking-wide">
+          <div className="inline-block mb-4 px-4 py-1.5 rounded-full border border-[#3182CE]/30 bg-[#3182CE]/10 text-[#3182CE] text-sm font-medium tracking-wide">
             Interactive Demo
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
-            See Nexus AI book a real dental appointment <span className="gradient-text">in 2 minutes</span>
+          <h2 className="text-[48px] md:text-5xl font-bold mb-6 text-[#1A365D]">
+            See Nexus AI book a real dental appointment <span className="text-[#3182CE]">in 2 minutes</span>
           </h2>
-          <p className="text-lg text-gray-400">
+          <p className="text-lg text-gray-600">
             Listen to a recording of our AI agent seamlessly qualifying a patient and finding an open calendar slot.
           </p>
         </motion.div>
@@ -43,8 +43,12 @@ export function Demo() {
               style={{aspectRatio: '16/9', borderRadius: '12px'}}
               onClick={() => setIsPlaying(true)}
             >
+              <div className="absolute top-4 left-4 z-20 px-3 py-1 bg-red-500 text-white text-xs font-bold rounded-full uppercase tracking-wide flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                Live Call Recording
+              </div>
               <Image 
-                src={"/tumb.png?v=" + new Date().getTime()} 
+                src={"/thumbnail.png?v=" + new Date().getTime()} 
                 alt="Nexus AI Demo Thumbnail" 
                 fill
                 unoptimized
@@ -53,8 +57,8 @@ export function Demo() {
               
               <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors z-0"></div>
               
-              <div className="w-20 h-20 bg-teal/90 rounded-full flex items-center justify-center z-10 shadow-[0_0_40px_rgba(0,212,170,0.5)] group-hover:scale-110 transition-transform">
-                <svg className="w-8 h-8 text-black ml-1" fill="currentColor" viewBox="0 0 24 24">
+              <div className="w-20 h-20 bg-[#3182CE]/90 rounded-full flex items-center justify-center z-10 shadow-[0_0_40px_rgba(49,130,206,0.5)] group-hover:scale-110 transition-transform">
+                <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
                 </svg>
               </div>

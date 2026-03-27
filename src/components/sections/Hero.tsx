@@ -9,7 +9,7 @@ import dynamic from "next/dynamic";
 const HeroSceneDynamic = dynamic(() => import('./HeroScene'), { ssr: false });
 
 export function Hero() {
-  const words = "Your Dental Clinic Answers Every Call.".split(" ");
+  const words = "Stop Missing Patients. Start Booking Them".split(" ");
 
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-black w-full" style={{ position: 'relative' }}>
@@ -52,19 +52,19 @@ export function Hero() {
               </span>
               <br className="hidden md:block" />
               <span className="relative inline-block mt-2">
-                <span className="text-teal animate-slow-pulse-glow mr-1 inline-block" style={{ paddingRight: "0.1em" }}>Even At 2AM.</span>
+                <span className="text-blue-500 animate-slow-pulse-glow mr-1 inline-block" style={{ paddingRight: "0.1em" }}>24/7.</span>
                 <div className="absolute inset-0 z-20 animate-shimmer-fast bg-gradient-to-r from-transparent via-white/30 to-transparent w-[50%] h-[150%] pointer-events-none mix-blend-overlay -skew-x-12 translate-x-[-200%]"></div>
               </span>
             </h1>
           </div>
           
           <p className="text-xl text-[#a0a0a0] mb-10 max-w-2xl mx-auto leading-[1.7] font-inter">
-            Nexus AI is an AI voice receptionist that answers missed calls, qualifies patients and books appointments automatically — <span className="text-white font-medium">24/7.</span>
+            Nexus AI picks up when your front desk can't. Qualify patients and book appointments directly into your calendar—even at 2 AM.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Button size="lg" className="text-lg px-8 h-14 font-inter font-semibold tracking-[0.01em]" asChild>
-              <a href="mailto:ritikksaklani@gmail.com?subject=Free%20Trial%20Request">Start 7-Day Free Trial</a>
+            <Button size="lg" className="text-lg px-8 h-14 font-inter font-semibold tracking-[0.01em] bg-[#3182CE] hover:bg-[#2b6cb0] text-white border-none" asChild>
+              <a href="#contact">Book a Free 15-Min Demo</a>
             </Button>
             <Button variant="outline" size="lg" className="text-lg px-8 h-14 font-inter tracking-[0.01em]" asChild>
               <Link href="#demo">

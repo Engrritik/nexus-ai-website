@@ -12,7 +12,7 @@ export function About() {
   ];
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden bg-[#050505]">
+    <section id="about" className="py-[100px] relative overflow-hidden bg-slate-50">
       
       <div className="container mx-auto px-6">
         <motion.div 
@@ -22,12 +22,12 @@ export function About() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <div className="inline-block mb-4 px-4 py-1.5 rounded-full border border-teal/30 bg-teal/10 text-teal text-sm font-medium tracking-wide">
+          <div className="inline-block mb-4 px-4 py-1.5 rounded-full border border-[#3182CE]/30 bg-[#3182CE]/10 text-[#3182CE] text-sm font-medium tracking-wide">
             The Founder
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
+          <h2 className="text-[48px] md:text-5xl font-bold mb-6 text-[#1A365D]">
             Built by someone who <br className="hidden md:block" />
-            <span className="gradient-text">understands the problem</span>
+            <span className="text-[#3182CE]">understands the problem</span>
           </h2>
         </motion.div>
 
@@ -42,18 +42,18 @@ export function About() {
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="md:col-span-4 h-full"
             >
-              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full p-2 bg-gradient-to-tr from-teal/20 to-teal/50">
-                <div className="w-full h-full rounded-full overflow-hidden border-4 border-black bg-black/80 relative">
+              <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto">
+                <div className="w-full h-full rounded-2xl overflow-hidden shadow-2xl relative">
                   <Image 
                     src="/ritik.jpeg" 
                     alt="Ritik Kumar - Founder" 
                     fill
-                    className="object-cover opacity-90"
+                    className="object-cover"
                     sizes="(max-width: 768px) 256px, 320px"
                   />
                 </div>
                 {/* Decorative elements */}
-                <div className="absolute -inset-4 bg-teal/20 blur-xl rounded-full -z-10" />
+                <div className="absolute -inset-4 bg-[#3182CE]/10 blur-xl rounded-2xl -z-10" />
               </div>
             </motion.div>
 
@@ -65,21 +65,15 @@ export function About() {
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="md:col-span-8 h-full"
             >  
-              <Card className="p-8 md:p-10 border-teal/20">
-                <div className="mb-6 pb-6 border-b border-white/10">
-                  <h3 className="text-3xl font-bold text-white mb-2">Ritik Kumar</h3>
-                  <p className="text-teal font-medium tracking-wide">Founder, Nexus AI</p>
+              <Card className="p-8 md:p-10 border-[#3182CE]/20 bg-white shadow-xl">
+                <div className="mb-6 pb-6 border-b border-gray-100">
+                  <h3 className="text-3xl font-bold text-[#1A365D] mb-2">Ritik Kumar</h3>
+                  <p className="text-[#3182CE] font-medium tracking-wide">Founder, Nexus AI</p>
                 </div>
 
-                <div className="space-y-6 text-gray-400 text-lg leading-relaxed mb-8">
+                <div className="space-y-6 text-gray-700 text-lg leading-relaxed mb-8">
                   <p>
-                    I&apos;m a machine learning engineer from India who spent months researching why dental clinics lose patients. The answer was always the same — missed calls.
-                  </p>
-                  <p>
-                    I built Nexus AI to solve exactly that. An AI voice receptionist that works 24/7, sounds human, and books patients directly into your calendar. No extra staff. No missed calls.
-                  </p>
-                  <p className="text-white/90 italic font-medium">
-                    "I work directly with every clinic I onboard. You won&apos;t deal with a support ticket — you&apos;ll deal with me."
+                    I provide 24/7 technical oversight to ensure your AI Agent never misses a beat. I work directly with every clinic to guarantee a sub-1-second response time and seamless practice management integration.
                   </p>
                 </div>
 
@@ -88,10 +82,10 @@ export function About() {
                   {stats.map((stat, idx) => (
                     <div 
                       key={idx}
-                      className="flex flex-col items-center sm:items-start p-4 rounded-xl bg-black/50 border border-white/5"
+                      className="flex flex-col items-center sm:items-start p-4 rounded-xl bg-slate-50 border border-gray-100"
                     >
-                      <span className="text-teal font-bold text-xl mb-1">{stat.label}</span>
-                      <span className="text-gray-500 text-sm">{stat.description}</span>
+                      <span className="text-[#3182CE] font-bold text-xl mb-1">{stat.label}</span>
+                      <span className="text-gray-600 text-sm">{stat.description}</span>
                     </div>
                   ))}
                 </div>

@@ -3,6 +3,7 @@ import { Inter, Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/ui/CustomCursor";
+import { SmoothScrolling } from "@/components/ui/SmoothScrolling";
 import "./globals.css";
 
 const inter = Inter({
@@ -39,12 +40,14 @@ export default function RootLayout({
       className={`${inter.variable} h-full antialiased dark`}
     >
       <body className={`min-h-full flex flex-col bg-transparent text-foreground antialiased selection:bg-teal selection:text-background font-sans ${inter.variable} ${bricolage.variable} ${jetbrains.variable}`}>
-        <CustomCursor />
-        <Navbar />
-        <main className="flex-1">
-          {children}
-        </main>
-        <Footer />
+        <SmoothScrolling>
+          <CustomCursor />
+          <Navbar />
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        </SmoothScrolling>
       </body>
     </html>
   );

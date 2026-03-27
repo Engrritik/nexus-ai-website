@@ -3,7 +3,7 @@
 @theme {
   --color-background: #050505;
   --color-foreground: #ffffff;
-  --color-teal: #00d4aa;
+  --color-teal: #3182ce;
   
   --font-sans: var(--font-inter);
 }
@@ -57,11 +57,11 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(0,212,170,0.4);
+  background: rgba(49,130,206,0.4);
   border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0,212,170,0.8);
+  background: rgba(49,130,206,0.8);
 }
 
 /* Base interactive animations */

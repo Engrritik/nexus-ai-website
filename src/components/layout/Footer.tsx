@@ -8,7 +8,7 @@ export function Footer() {
         
         <p className="text-sm text-gray-500 text-center md:text-left">
           &copy; {new Date().getFullYear()} Nexus AI. All rights reserved. <br className="md:hidden" />
-          Designed for dental clinics across the US.
+          <span className="text-gray-400 font-medium">Designed for dental clinics across the US.</span>
         </p>
 
         <div className="flex items-center gap-6">

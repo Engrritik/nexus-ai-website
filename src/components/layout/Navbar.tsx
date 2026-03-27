@@ -71,8 +71,8 @@ export function Navbar() {
             <Button variant="ghost" asChild>
               <Link href="#contact">Contact</Link>
             </Button>
-            <Button asChild>
-              <a href="mailto:ritikksaklani@gmail.com?subject=Free%20Trial%20Request">Start Free Trial</a>
+            <Button className="bg-[#3182CE] hover:bg-[#2b6cb0] text-white border-none" asChild>
+              <Link href="#contact">Book a Free 15-Min Demo</Link>
             </Button>
           </div>
         </nav>
@@ -103,8 +103,8 @@ export function Navbar() {
             <Button variant="outline" className="w-full" asChild>
               <Link href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
             </Button>
-            <Button className="w-full" asChild>
-              <a href="mailto:ritikksaklani@gmail.com?subject=Free%20Trial%20Request" onClick={() => setMobileMenuOpen(false)}>Start Free Trial</a>
+            <Button className="w-full bg-[#3182CE] hover:bg-[#2b6cb0] text-white border-none" asChild>
+              <Link href="#contact" onClick={() => setMobileMenuOpen(false)}>Book a Free 15-Min Demo</Link>
             </Button>
           </div>
         </div>
