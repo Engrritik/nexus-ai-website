@@ -5,6 +5,7 @@ import { Clock, CalendarCheck, UserCheck, CalendarDays, Activity } from "lucide-
 import { FadeAndRiseReveal } from "@/components/ui/FadeAndRiseReveal";
 import { BackgroundScene } from "@/components/ui/BackgroundScene";
 import { motion } from "framer-motion";
+import { TiltCard } from "@/components/ui/TiltCard";
 
 export function Solution() {
   return (
@@ -34,16 +35,18 @@ export function Solution() {
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0 }}
           >
-            <div className="h-full rounded-2xl p-8 premium-glass-card group relative overflow-hidden">
-              <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-[#00f0ff] rounded-full blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
-              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#00f0ff]/20 to-transparent border border-[#00f0ff]/30 flex items-center justify-center mb-8 text-[#00f0ff] group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(0,240,255,0.15)]">
-                <Clock className="w-7 h-7" />
+            <TiltCard>
+              <div className="h-full rounded-2xl p-8 premium-glass-card group relative overflow-hidden">
+                <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-[#00f0ff] rounded-full blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#00f0ff]/20 to-transparent border border-[#00f0ff]/30 flex items-center justify-center mb-8 text-[#00f0ff] group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(0,240,255,0.15)]">
+                  <Clock className="w-7 h-7" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-white font-sans tracking-tight">Inbound Voice Receptionist</h3>
+                <p className="text-[#A1A1AA] leading-relaxed font-sans">
+                  24/7 autonomous booking & lead qualification. Natural language intent recognition with zero-hallucination architecture.
+                </p>
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-white font-sans tracking-tight">Inbound Voice Receptionist</h3>
-              <p className="text-[#A1A1AA] leading-relaxed font-sans">
-                24/7 autonomous booking & lead qualification. Natural language intent recognition with zero-hallucination architecture.
-              </p>
-            </div>
+            </TiltCard>
           </motion.div>
 
           <motion.div
@@ -52,16 +55,18 @@ export function Solution() {
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
           >
-            <div className="h-full rounded-2xl p-8 premium-glass-card group relative overflow-hidden">
-              <div className="absolute bottom-0 right-0 -mr-8 -mb-8 w-32 h-32 bg-[#7000ff] rounded-full blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
-              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#7000ff]/20 to-transparent border border-[#7000ff]/30 flex items-center justify-center mb-8 text-[#a966ff] group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(112,0,255,0.15)]">
-                <UserCheck className="w-7 h-7" />
+            <TiltCard>
+              <div className="h-full rounded-2xl p-8 premium-glass-card group relative overflow-hidden">
+                <div className="absolute bottom-0 right-0 -mr-8 -mb-8 w-32 h-32 bg-[#7000ff] rounded-full blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#7000ff]/20 to-transparent border border-[#7000ff]/30 flex items-center justify-center mb-8 text-[#a966ff] group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(112,0,255,0.15)]">
+                  <UserCheck className="w-7 h-7" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-white font-sans tracking-tight">Custom Engineering & Logic</h3>
+                <p className="text-[#A1A1AA] leading-relaxed font-sans">
+                  Tailored n8n workflows and custom webhook integrations. We build the plumbing that connects your voice engine to your actual business tools.
+                </p>
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-white font-sans tracking-tight">Custom Engineering & Logic</h3>
-              <p className="text-[#A1A1AA] leading-relaxed font-sans">
-                Tailored n8n workflows and custom webhook integrations. We build the plumbing that connects your voice engine to your actual business tools.
-              </p>
-            </div>
+            </TiltCard>
           </motion.div>
 
           <motion.div
@@ -70,16 +75,18 @@ export function Solution() {
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
           >
-            <div className="h-full rounded-2xl p-8 premium-glass-card group relative overflow-hidden">
-              <div className="absolute top-0 left-0 -ml-8 -mt-8 w-32 h-32 bg-[#00f0ff] rounded-full blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
-              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#00f0ff]/20 to-transparent border border-[#00f0ff]/30 flex items-center justify-center mb-8 text-[#00f0ff] group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(0,240,255,0.15)]">
-                <CalendarDays className="w-7 h-7" />
+            <TiltCard>
+              <div className="h-full rounded-2xl p-8 premium-glass-card group relative overflow-hidden">
+                <div className="absolute top-0 left-0 -ml-8 -mt-8 w-32 h-32 bg-[#00f0ff] rounded-full blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#00f0ff]/20 to-transparent border border-[#00f0ff]/30 flex items-center justify-center mb-8 text-[#00f0ff] group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(0,240,255,0.15)]">
+                  <CalendarDays className="w-7 h-7" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-white font-sans tracking-tight">Seamless Calendar Sync</h3>
+                <p className="text-[#A1A1AA] leading-relaxed font-sans">
+                  Bi-directional integration with Cal.com and existing clinic CRMs. Deterministic availability checking to completely eliminate double-booking.
+                </p>
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-white font-sans tracking-tight">Seamless Calendar Sync</h3>
-              <p className="text-[#A1A1AA] leading-relaxed font-sans">
-                Bi-directional integration with Cal.com and existing clinic CRMs. Deterministic availability checking to completely eliminate double-booking.
-              </p>
-            </div>
+            </TiltCard>
           </motion.div>
 
           <motion.div
@@ -88,16 +95,18 @@ export function Solution() {
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
           >
-            <div className="h-full rounded-2xl p-8 premium-glass-card group relative overflow-hidden">
-              <div className="absolute bottom-0 left-0 -ml-8 -mb-8 w-32 h-32 bg-[#7000ff] rounded-full blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
-              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#7000ff]/20 to-transparent border border-[#7000ff]/30 flex items-center justify-center mb-8 text-[#a966ff] group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(112,0,255,0.15)]">
-                <Activity className="w-7 h-7" />
+            <TiltCard>
+              <div className="h-full rounded-2xl p-8 premium-glass-card group relative overflow-hidden">
+                <div className="absolute bottom-0 left-0 -ml-8 -mb-8 w-32 h-32 bg-[#7000ff] rounded-full blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#7000ff]/20 to-transparent border border-[#7000ff]/30 flex items-center justify-center mb-8 text-[#a966ff] group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(112,0,255,0.15)]">
+                  <Activity className="w-7 h-7" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-white font-sans tracking-tight">Real-Time Analytics & Routing</h3>
+                <p className="text-[#A1A1AA] leading-relaxed font-sans">
+                  Sub-second latency with full call transcripts, intent tagging, and actionable summaries pushed directly to your Slack or dashboard.
+                </p>
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-white font-sans tracking-tight">Real-Time Analytics & Routing</h3>
-              <p className="text-[#A1A1AA] leading-relaxed font-sans">
-                Sub-second latency with full call transcripts, intent tagging, and actionable summaries pushed directly to your Slack or dashboard.
-              </p>
-            </div>
+            </TiltCard>
           </motion.div>
         </div>
       </div>

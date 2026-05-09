@@ -94,9 +94,9 @@ function Particles({ color, variant, count }: BackgroundParticlesProps) {
 }
 
 export function BackgroundScene({ 
-  color = "#00d4aa", 
+  color = "#7000ff", 
   variant = "wave",
-  count = 1000
+  count = 1500
 }: { 
   color?: string; 
   variant?: ParticleVariant;

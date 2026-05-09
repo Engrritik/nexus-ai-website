@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { PhoneCall, Bot, CalendarDays } from "lucide-react";
+import { TiltCard } from "@/components/ui/TiltCard";
 
 export function HowItWorks() {
   const steps = [
@@ -66,10 +67,11 @@ export function HowItWorks() {
                 transition={{ duration: 0.6, delay: springDelay }}
                 className="w-full"
               >
-                <div className="h-[380px] rounded-3xl premium-glass-card group relative overflow-hidden flex flex-col justify-between p-8 border border-white/5 bg-[#0f0f15]/80 hover:bg-[#1a1a24]/80 transition-colors">
-                  
-                  {/* Dotted Grid Background */}
-                  <div className="absolute inset-0 z-0 bg-[radial-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:24px_24px] opacity-70 mask-image-[linear-gradient(to_bottom,white,transparent)]" style={{ WebkitMaskImage: 'radial-gradient(circle_at_center, white, transparent 80%)' }} />
+                <TiltCard>
+                  <div className="h-[380px] rounded-3xl premium-glass-card group relative overflow-hidden flex flex-col justify-between p-8 border border-white/5 bg-[#0f0f15]/80 hover:bg-[#1a1a24]/80 transition-colors">
+                    
+                    {/* Dotted Grid Background */}
+                    <div className="absolute inset-0 z-0 bg-[radial-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:24px_24px] opacity-70 mask-image-[linear-gradient(to_bottom,white,transparent)]" style={{ WebkitMaskImage: 'radial-gradient(circle_at_center, white, transparent 80%)' }} />
 
                   {/* Top: Centered Floating Icon */}
                   <div className="relative z-10 flex-1 flex items-center justify-center">
@@ -92,6 +94,7 @@ export function HowItWorks() {
                     </p>
                   </div>
                 </div>
+                </TiltCard>
               </motion.div>
             )})}
           </div>
