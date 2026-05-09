@@ -1,113 +1,103 @@
 "use client";
 
-import { Card } from "@/components/ui/Card";
-import { Clock, CalendarCheck, UserCheck, CalendarDays, Activity } from "lucide-react";
-import { FadeAndRiseReveal } from "@/components/ui/FadeAndRiseReveal";
-import { BackgroundScene } from "@/components/ui/BackgroundScene";
 import { motion } from "framer-motion";
+import { BackgroundScene } from "@/components/ui/BackgroundScene";
 import { TiltCard } from "@/components/ui/TiltCard";
 
 export function Solution() {
+  const cards = [
+    {
+      titleColor: "text-[#00f0ff]",
+      dotColor: "bg-[#00f0ff]/60",
+      titleWord: "Inbound",
+      titleRest: "Voice Receptionist",
+      description: "24/7 autonomous booking & lead qualification. Natural language intent recognition with zero-hallucination architecture.",
+      delay: 0
+    },
+    {
+      titleColor: "text-[#7000ff]",
+      dotColor: "bg-[#7000ff]/60",
+      titleWord: "Custom",
+      titleRest: "Engineering & Logic",
+      description: "Tailored n8n workflows and custom webhook integrations. We build the plumbing that connects your voice engine to your actual business tools.",
+      delay: 0.1
+    },
+    {
+      titleColor: "text-[#00ffa3]",
+      dotColor: "bg-[#00ffa3]/60",
+      titleWord: "Seamless",
+      titleRest: "Calendar Sync",
+      description: "Bi-directional integration with Cal.com and existing clinic CRMs. Deterministic availability checking to completely eliminate double-booking.",
+      delay: 0.2
+    },
+    {
+      titleColor: "text-[#ff00a0]",
+      dotColor: "bg-[#ff00a0]/60",
+      titleWord: "Real-Time",
+      titleRest: "Analytics & Routing",
+      description: "Sub-second latency with full call transcripts, intent tagging, and actionable summaries pushed directly to your Slack or dashboard.",
+      delay: 0.3
+    }
+  ];
+
   return (
-    <section id="solution" className="py-24 relative overflow-hidden bg-[#050505]">
+    <section id="solutions" className="py-[100px] relative overflow-hidden bg-transparent">
+      {/* Dynamic Background */}
+      <BackgroundScene variant="swirl" color="#7000ff" count={800} />
       
-      <div className="container mx-auto px-6">
+      <div className="container relative z-10 px-6 mx-auto">
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto mb-20"
         >
-          <div className="inline-block mb-4 px-4 py-1.5 rounded-full border border-[#00f0ff]/30 bg-[#00f0ff]/10 text-[#00f0ff] text-[11px] font-mono font-medium tracking-[0.08em] uppercase">
+          <div className="inline-block mb-4 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-gray-300 text-sm font-medium tracking-wide">
             Specialized Solutions
           </div>
-          <h2 className="text-3xl md:text-5xl font-sans font-bold mb-6 text-white tracking-tight leading-[1.1]">
-            Intelligent Automation for <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00f0ff] to-[#7000ff]">Modern Clinics.</span>
+          <h2 className="text-[40px] md:text-5xl font-bold mb-6 text-white tracking-tight leading-[1.1]">
+            Intelligent Automation for<br />Modern Clinics.
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto overflow-visible px-4 md:px-0">
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0 }}
-          >
-            <TiltCard>
-              <div className="h-full rounded-2xl p-8 premium-glass-card group relative overflow-hidden">
-                <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-[#00f0ff] rounded-full blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#00f0ff]/20 to-transparent border border-[#00f0ff]/30 flex items-center justify-center mb-8 text-[#00f0ff] group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(0,240,255,0.15)]">
-                  <Clock className="w-7 h-7" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-white font-sans tracking-tight">Inbound Voice Receptionist</h3>
-                <p className="text-[#A1A1AA] leading-relaxed font-sans">
-                  24/7 autonomous booking & lead qualification. Natural language intent recognition with zero-hallucination architecture.
-                </p>
-              </div>
-            </TiltCard>
-          </motion.div>
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {cards.map((card, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ type: "spring", stiffness: 200, damping: 20, delay: card.delay }}
+              className="h-full"
+            >
+              <TiltCard>
+                <div className="rounded-3xl border border-white/10 bg-[#0f0f15]/80 shadow-2xl p-8 md:p-10 relative overflow-hidden premium-glass-card h-full flex flex-col group">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-8 flex flex-wrap gap-1 shrink-0 pt-1">
+                      {[...Array(9)].map((_, i) => (
+                        <div key={i} className={`w-2 h-2 rounded-full ${card.dotColor}`} />
+                      ))}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-white mb-2 tracking-tight">
+                        <span className={card.titleColor}>{card.titleWord}</span> {card.titleRest}
+                      </h3>
+                      <p className="text-[#A1A1AA] text-sm leading-relaxed mb-6 font-sans">
+                        {card.description}
+                      </p>
+                    </div>
+                  </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-          >
-            <TiltCard>
-              <div className="h-full rounded-2xl p-8 premium-glass-card group relative overflow-hidden">
-                <div className="absolute bottom-0 right-0 -mr-8 -mb-8 w-32 h-32 bg-[#7000ff] rounded-full blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#7000ff]/20 to-transparent border border-[#7000ff]/30 flex items-center justify-center mb-8 text-[#a966ff] group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(112,0,255,0.15)]">
-                  <UserCheck className="w-7 h-7" />
+                  <div className="mt-auto pt-4">
+                    <a href="#contact" className="block w-full text-center py-3.5 bg-black text-white border border-white/10 hover:bg-white/5 hover:border-white/20 transition-all duration-300 font-mono tracking-widest text-xs uppercase rounded-xl">
+                      Book A Call
+                    </a>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-white font-sans tracking-tight">Custom Engineering & Logic</h3>
-                <p className="text-[#A1A1AA] leading-relaxed font-sans">
-                  Tailored n8n workflows and custom webhook integrations. We build the plumbing that connects your voice engine to your actual business tools.
-                </p>
-              </div>
-            </TiltCard>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-          >
-            <TiltCard>
-              <div className="h-full rounded-2xl p-8 premium-glass-card group relative overflow-hidden">
-                <div className="absolute top-0 left-0 -ml-8 -mt-8 w-32 h-32 bg-[#00f0ff] rounded-full blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#00f0ff]/20 to-transparent border border-[#00f0ff]/30 flex items-center justify-center mb-8 text-[#00f0ff] group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(0,240,255,0.15)]">
-                  <CalendarDays className="w-7 h-7" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-white font-sans tracking-tight">Seamless Calendar Sync</h3>
-                <p className="text-[#A1A1AA] leading-relaxed font-sans">
-                  Bi-directional integration with Cal.com and existing clinic CRMs. Deterministic availability checking to completely eliminate double-booking.
-                </p>
-              </div>
-            </TiltCard>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
-          >
-            <TiltCard>
-              <div className="h-full rounded-2xl p-8 premium-glass-card group relative overflow-hidden">
-                <div className="absolute bottom-0 left-0 -ml-8 -mb-8 w-32 h-32 bg-[#7000ff] rounded-full blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#7000ff]/20 to-transparent border border-[#7000ff]/30 flex items-center justify-center mb-8 text-[#a966ff] group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(112,0,255,0.15)]">
-                  <Activity className="w-7 h-7" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-white font-sans tracking-tight">Real-Time Analytics & Routing</h3>
-                <p className="text-[#A1A1AA] leading-relaxed font-sans">
-                  Sub-second latency with full call transcripts, intent tagging, and actionable summaries pushed directly to your Slack or dashboard.
-                </p>
-              </div>
-            </TiltCard>
-          </motion.div>
+              </TiltCard>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
