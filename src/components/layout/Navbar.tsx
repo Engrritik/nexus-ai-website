@@ -61,17 +61,17 @@ export function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm font-inter text-gray-300 hover:text-teal transition-colors relative group py-2"
+              className="text-sm font-inter text-gray-300 nav-link-glow relative group py-2"
             >
               {link.name}
-              <span className="absolute bottom-0 left-0 w-full h-[2px] bg-teal transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+              <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#00f0ff] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
             </Link>
           ))}
           <div className="flex items-center gap-4 ml-2">
-            <Button variant="ghost" asChild>
+            <Button variant="ghost" className="select-none" asChild>
               <Link href="#contact">Contact</Link>
             </Button>
-            <Button className="bg-[#00f0ff] text-black font-semibold hover:bg-[#00f0ff]/90 transition-all duration-300 hover:scale-105" asChild>
+            <Button className="bg-[#00f0ff] text-black font-semibold hover:bg-[#00d0e6] transition-all duration-300 hover:scale-[1.02] select-none" asChild>
               <Link href="#contact">Book a Technical Review</Link>
             </Button>
           </div>
@@ -94,16 +94,16 @@ export function Navbar() {
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="text-lg font-medium text-white py-2"
+              className="text-lg font-medium text-white py-2 nav-link-glow"
             >
               {link.name}
             </Link>
           ))}
           <div className="flex flex-col gap-3 mt-4 pt-4 border-t border-white/10">
-            <Button variant="outline" className="w-full" asChild>
+            <Button variant="outline" className="w-full select-none" asChild>
               <Link href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
             </Button>
-            <Button className="w-full bg-[#00f0ff] text-black font-semibold hover:bg-[#00f0ff]/90 transition-all duration-300 hover:scale-105" asChild>
+            <Button className="w-full bg-[#00f0ff] text-black font-semibold hover:bg-[#00d0e6] transition-all duration-300 hover:scale-[1.02] select-none" asChild>
               <Link href="#contact" onClick={() => setMobileMenuOpen(false)}>Book a Technical Review</Link>
             </Button>
           </div>
