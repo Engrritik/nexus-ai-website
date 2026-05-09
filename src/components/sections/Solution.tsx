@@ -18,68 +18,50 @@ export function Solution() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <div className="inline-block mb-4 px-4 py-1.5 rounded-full border border-teal/30 bg-teal/10 text-teal text-[11px] font-mono font-medium tracking-[0.08em] uppercase">
-            The Solution
+          <div className="inline-block mb-4 px-4 py-1.5 rounded-full border border-[#00f0ff]/30 bg-[#00f0ff]/10 text-[#00f0ff] text-[11px] font-mono font-medium tracking-[0.08em] uppercase">
+            Specialized Solutions
           </div>
-          <h2 className="text-3xl md:text-5xl font-bricolage font-bold mb-6 text-white tracking-[-0.02em] leading-[1.1]">
-            Nexus AI answers every call. <br className="hidden md:block" />
-            <span className="text-teal">Books every patient.</span>
+          <h2 className="text-3xl md:text-5xl font-sans font-bold mb-6 text-white tracking-tight leading-[1.1]">
+            Intelligent Automation for <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00f0ff] to-[#7000ff]">Modern Clinics.</span>
           </h2>
-          <p className="text-lg text-[#a0a0a0] font-inter">
-            Our intelligent voice agent sounds like a human and handles your front desk operations effortlessly.
-          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto overflow-hidden px-4 md:px-0">
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto overflow-visible px-4 md:px-0">
           <motion.div
-            initial={{ opacity: 0, x: -60 }}
+            initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0 }}
           >
-            <Card className="h-full hover:border-teal/30 transition-colors duration-300 group">
-              <div className="w-12 h-12 rounded-lg bg-teal/10 flex items-center justify-center mb-6 text-teal group-hover:scale-110 transition-transform">
-                <Clock className="w-6 h-6" />
+            <div className="h-full rounded-2xl p-8 premium-glass-card group relative overflow-hidden">
+              <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-[#00f0ff] rounded-full blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#00f0ff]/20 to-transparent border border-[#00f0ff]/30 flex items-center justify-center mb-8 text-[#00f0ff] group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(0,240,255,0.15)]">
+                <Clock className="w-7 h-7" />
               </div>
-              <h3 className="text-2xl font-semibold mb-3 text-white">Answers 24/7</h3>
-              <p className="text-gray-400 leading-relaxed">
-                Whether it&apos;s 2 AM on a Sunday or during the lunchtime rush, Nexus AI picks up on the first ring, every single time.
+              <h3 className="text-2xl font-bold mb-4 text-white font-sans tracking-tight">Inbound Voice Receptionist</h3>
+              <p className="text-[#A1A1AA] leading-relaxed font-sans">
+                24/7 autonomous booking & lead qualification. Natural language intent recognition with zero-hallucination architecture.
               </p>
-            </Card>
+            </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0 }}
-          >
-            <Card className="h-full hover:border-teal/30 transition-colors duration-300 group">
-              <div className="w-12 h-12 rounded-lg bg-teal/10 flex items-center justify-center mb-6 text-teal group-hover:scale-110 transition-transform">
-                <UserCheck className="w-6 h-6" />
-              </div>
-              <h3 className="text-2xl font-semibold mb-3 text-white">Qualifies Patients</h3>
-              <p className="text-gray-400 leading-relaxed">
-                Asks the right questions to understand patient needs, verifies insurance types, and filters out spam calls intelligently.
-              </p>
-            </Card>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 60 }}
+            initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
           >
-            <Card className="h-full hover:border-teal/30 transition-colors duration-300 group">
-              <div className="w-12 h-12 rounded-lg bg-teal/10 flex items-center justify-center mb-6 text-teal group-hover:scale-110 transition-transform">
-                <CalendarCheck className="w-6 h-6" />
+            <div className="h-full rounded-2xl p-8 premium-glass-card group relative overflow-hidden">
+              <div className="absolute bottom-0 right-0 -mr-8 -mb-8 w-32 h-32 bg-[#7000ff] rounded-full blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#7000ff]/20 to-transparent border border-[#7000ff]/30 flex items-center justify-center mb-8 text-[#a966ff] group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(112,0,255,0.15)]">
+                <UserCheck className="w-7 h-7" />
               </div>
-              <h3 className="text-2xl font-semibold mb-3 text-white">Books Directly</h3>
-              <p className="text-gray-400 leading-relaxed">
-                Integrates seamlessly with your existing practice management software to schedule appointments directly into your calendar.
+              <h3 className="text-2xl font-bold mb-4 text-white font-sans tracking-tight">Custom Engineering & Logic</h3>
+              <p className="text-[#A1A1AA] leading-relaxed font-sans">
+                Tailored n8n workflows and custom webhook integrations. We build the plumbing that connects your voice engine to your actual business tools.
               </p>
-            </Card>
+            </div>
           </motion.div>
         </div>
       </div>
