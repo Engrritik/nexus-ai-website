@@ -52,58 +52,47 @@ export function HowItWorks() {
           </p>
         </motion.div>
 
-        <div ref={ref} className="relative w-full max-w-5xl mx-auto pb-20 pt-10">
-          
-          {/* Horizontal central line timeline mapping */}
-          <div className="hidden md:block absolute left-[10%] right-[10%] top-[40px] h-1 bg-white/5 rounded-full z-0 overflow-hidden transform-origin-left">
-            <motion.div 
-              className="h-full bg-gradient-to-r from-[#00f0ff] to-[#7000ff]"
-              style={{ width: pathLength, transformOrigin: "left" }} 
-            />
-          </div>
-
-          <div className="flex flex-col md:flex-row items-start justify-between relative z-10 gap-12 md:gap-6">
+        <div ref={ref} className="relative w-full max-w-5xl mx-auto pb-20">
+          <div className="grid md:grid-cols-3 gap-6 relative z-10">
             {steps.map((step, index) => {
-              // Creating a delayed pop-in mimicking line progression
-              const springDelay = 0.2 + (index * 0.3);
+              const springDelay = 0.2 + (index * 0.2);
 
               return (
-              <div key={index} className="flex flex-col items-center md:items-start text-center md:text-left flex-1 relative group w-full">
-                
-                {/* Mobile vertical line connector */}
-                {index < steps.length - 1 && (
-                  <div className="md:hidden absolute top-[80px] bottom-[-48px] left-[40px] w-[2px] bg-white/5 rounded-full z-0 overflow-hidden" />
-                )}
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.6, delay: springDelay }}
+                className="w-full"
+              >
+                <div className="h-[380px] rounded-3xl premium-glass-card group relative overflow-hidden flex flex-col justify-between p-8 border border-white/5 bg-[#0f0f15]/80 hover:bg-[#1a1a24]/80 transition-colors">
+                  
+                  {/* Dotted Grid Background */}
+                  <div className="absolute inset-0 z-0 bg-[radial-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:24px_24px] opacity-70 mask-image-[linear-gradient(to_bottom,white,transparent)]" style={{ WebkitMaskImage: 'radial-gradient(circle_at_center, white, transparent 80%)' }} />
 
-                <motion.div
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={{ type: "spring", stiffness: 200, damping: 15, delay: springDelay }}
-                  className="shrink-0 relative mb-8 flex items-center justify-center md:self-center"
-                >
-                  <div className="w-20 h-20 rounded-2xl bg-[#0f0f15] border border-white/10 flex items-center justify-center relative z-10 shadow-[0_0_30px_rgba(0,240,255,0.15)] group-hover:border-[#00f0ff]/40 transition-colors duration-500 premium-glass-card">
-                    {step.icon}
+                  {/* Top: Centered Floating Icon */}
+                  <div className="relative z-10 flex-1 flex items-center justify-center">
+                    <motion.div
+                      initial={{ scale: 0.8 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ type: "spring", stiffness: 200, damping: 15, delay: springDelay + 0.2 }}
+                      className="w-20 h-20 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 flex items-center justify-center shadow-[0_10px_40px_rgba(0,240,255,0.1)] group-hover:-translate-y-2 transition-transform duration-500"
+                    >
+                      {step.icon}
+                    </motion.div>
                   </div>
-                  <div className="absolute inset-0 bg-[#00f0ff]/10 blur-xl rounded-full -z-10" />
-                  <div className="absolute top-0 right-0 -mr-3 -mt-3 w-8 h-8 rounded-full bg-gradient-to-br from-[#00f0ff] to-[#7000ff] flex items-center justify-center text-white font-bold border-4 border-[#050505] z-20 font-sans shadow-lg">
-                    {index + 1}
+                  
+                  {/* Bottom: Left-aligned Text */}
+                  <div className="relative z-10 mt-8">
+                    <h3 className="text-2xl font-sans font-bold mb-3 text-white tracking-tight leading-[1.1]">{step.title}</h3>
+                    <p className="text-[#A1A1AA] leading-relaxed text-sm font-sans">
+                      {step.description}
+                    </p>
                   </div>
-                </motion.div>
-                
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={{ duration: 0.5, delay: springDelay + 0.1 }}
-                  className="relative z-10 w-full flex flex-col items-center md:items-center text-center"
-                >
-                  <h3 className="text-xl md:text-2xl font-sans font-bold mb-3 text-white tracking-tight leading-[1.1]">{step.title}</h3>
-                  <p className="text-[#A1A1AA] leading-[1.7] text-base font-sans">
-                    {step.description}
-                  </p>
-                </motion.div>
-              </div>
+                </div>
+              </motion.div>
             )})}
           </div>
         </div>

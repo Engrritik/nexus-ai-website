@@ -12,8 +12,8 @@ export function Footer() {
         </p>
 
         <div className="flex items-center gap-6">
-          <a href="mailto:ritikksaklani@gmail.com" className="text-gray-400 hover:text-teal transition-colors text-sm">
-            ritikksaklani@gmail.com
+          <a href="mailto:hello@nexus-ai.com" className="text-gray-400 hover:text-teal transition-colors text-sm">
+            hello@nexus-ai.com
           </a>
           <a href="https://linkedin.com/in/ritiksak" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-teal transition-colors text-sm">
             LinkedIn

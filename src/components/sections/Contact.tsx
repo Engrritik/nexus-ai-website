@@ -29,13 +29,13 @@ export function Contact() {
             
             <div className="space-y-6">
               <div className="flex items-center gap-4 text-gray-300">
-                <div className="w-12 h-12 rounded-full border border-teal/20 bg-teal/5 flex items-center justify-center">
-                  <Mail className="w-5 h-5 text-teal" />
+                <div className="w-12 h-12 rounded-full border border-[#00f0ff]/20 bg-[#00f0ff]/5 flex items-center justify-center">
+                  <Mail className="w-5 h-5 text-[#00f0ff]" />
                 </div>
                 <div>
                   <p className="text-sm text-gray-500 uppercase tracking-widest mb-1 font-mono font-medium text-[11px] tracking-[0.08em]">Email</p>
-                  <a href="mailto:ritikksaklani@gmail.com" className="text-lg text-white hover:text-teal transition-colors font-inter">
-                    ritikksaklani@gmail.com
+                  <a href="mailto:hello@nexus-ai.com" className="text-lg text-white hover:text-[#00f0ff] transition-colors font-sans">
+                    hello@nexus-ai.com
                   </a>
                 </div>
               </div>
@@ -77,8 +77,8 @@ export function Contact() {
                 </div>
                 
                 <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.32 }}>
-                  <Button type="submit" size="lg" className="w-full text-lg mt-4 h-14 bg-teal neon-box-shadow text-black border-none transition-all duration-300 hover:scale-[1.02]">
-                    Book a Free 15-Min Demo <ArrowRight className="w-5 h-5 ml-2" />
+                  <Button type="submit" size="lg" className="w-full text-lg mt-4 h-14 bg-[#00f0ff] text-black font-semibold border-none transition-all duration-300 hover:scale-[1.02]">
+                    Book a Technical Review <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
                 </motion.div>
               </form>

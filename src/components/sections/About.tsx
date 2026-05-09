@@ -6,8 +6,8 @@ import { Card } from "@/components/ui/Card";
 
 export function About() {
   const stats = [
-    { label: "110+", description: "Cold emails sent to dental owners" },
-    { label: "52%", description: "Open rate across all campaigns" },
+    { label: "< 1s", description: "Latency for natural conversational response" },
+    { label: "100%", description: "Calendar Sync with zero double-booking" },
     { label: "1 Mission", description: "Zero missed calls for dental clinics" }
   ];
 
