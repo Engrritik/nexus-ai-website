@@ -77,18 +77,7 @@ export function About() {
                   </p>
                 </div>
 
-                {/* Stat Badges */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  {stats.map((stat, idx) => (
-                    <div 
-                      key={idx}
-                      className="flex flex-col items-center sm:items-start p-4 rounded-xl bg-black/50 border border-white/5 glow-card"
-                    >
-                      <span className="text-teal font-bold text-xl mb-1">{stat.label}</span>
-                      <span className="text-[#A1A1AA] text-sm">{stat.description}</span>
-                    </div>
-                  ))}
-                </div>
+
               </Card>
             </motion.div>
 

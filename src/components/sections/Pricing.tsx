@@ -19,10 +19,10 @@ export function Pricing() {
   return (
     <section id="pricing" className="py-[100px] relative overflow-hidden bg-transparent border-y border-white/5">
       {/* Dynamic Background */}
-      <BackgroundScene variant="wave" color="#00ffa3" count={800} />
+      <BackgroundScene variant="wave" color="#00f0ff" count={800} />
       
       {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-teal/5 rounded-full blur-[150px] -z-10 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#00f0ff]/5 rounded-full blur-[150px] -z-10 pointer-events-none" />
       
       <div className="container mx-auto px-6 relative z-10">
         <motion.div 
@@ -32,71 +32,97 @@ export function Pricing() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <div className="inline-block mb-4 px-4 py-1.5 rounded-full border border-teal/30 bg-teal/10 text-teal text-sm font-medium tracking-wide">
-            Simple Pricing
-          </div>
-          <h2 className="text-[48px] md:text-5xl font-bold mb-6 text-white">
-            Pay only if it captures <br className="hidden md:block" />
-            <span className="text-teal">patients you were missing</span>
+          <h2 className="text-[48px] md:text-5xl font-bold mb-6 text-white font-sans tracking-tight">
+            Custom AI Solutions,<br />Tailored to Your Clinic
           </h2>
-          <p className="text-lg text-[#A1A1AA]">
-            One powerful plan. All features included. No hidden fees.
-          </p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+          
+          {/* Card 1: Inbound */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ type: "spring", stiffness: 200, damping: 20 }}
-            className="rounded-3xl border border-white/10 bg-black/60 shadow-2xl p-8 md:p-12 relative overflow-hidden glow-card backdrop-blur-xl"
+            className="rounded-3xl border border-white/10 bg-[#0f0f15]/80 shadow-2xl p-8 md:p-10 relative overflow-hidden premium-glass-card"
           >
-            {/* Ribbon */}
-            <div className="absolute top-6 -right-12 bg-teal text-black text-sm font-bold tracking-wider py-1.5 px-14 rotate-45 shadow-[0_0_15px_rgba(0,255,163,0.3)]">
-              15-MIN DEMO
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="flex items-start gap-4 mb-4">
+              <div className="w-8 flex flex-wrap gap-1 shrink-0 pt-1">
+                {[...Array(9)].map((_, i) => (
+                  <div key={i} className="w-2 h-2 rounded-full bg-[#7000ff]/60" />
+                ))}
+              </div>
               <div>
-                <h3 className="text-2xl font-semibold mb-2 text-white">Agency License</h3>
-                <p className="text-[#A1A1AA] mb-8 pb-8 border-b border-white/10">
-                  Fully managed setup and continuous optimization for your clinic.
+                <h3 className="text-xl font-bold text-white mb-2"><span className="text-[#7000ff]">Inbound</span> AI Receptionist</h3>
+                <p className="text-[#A1A1AA] text-sm leading-relaxed mb-6">
+                  Engage patients instantly, answer clinical inquiries, and resolve standard booking requests entirely on autopilot.
                 </p>
-                
-                <div className="flex items-baseline gap-2 mb-2">
-                  <span className="text-5xl font-bold text-white">$300</span>
-                  <span className="text-gray-400">/ month</span>
-                </div>
-                <div className="text-teal font-medium mb-8">
-                  + $3,000 one-time setup fee
-                </div>
-
-                <Button size="lg" className="w-full text-lg mb-4 bg-teal neon-box-shadow text-black border-none transition-all duration-300 hover:scale-105" asChild>
-                  <a href="#contact">Book a Free 15-Min Demo</a>
-                </Button>
-                <p className="text-xs text-center text-gray-500">
-                  Cancel anytime. Dedicated technical oversight included.
-                </p>
-              </div>
-
-              <div className="md:pl-8 md:border-l border-white/10">
-                <p className="text-sm font-medium text-gray-400 uppercase tracking-widest mb-6">
-                  Everything Included
-                </p>
-                <ul className="space-y-4">
-                  {features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <div className="mt-1 w-5 h-5 rounded-full bg-teal/20 flex items-center justify-center shrink-0">
-                        <Check className="w-3 h-3 text-teal font-bold" />
-                      </div>
-                      <span className="text-gray-300 leading-snug">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
             </div>
+
+            <Button className="w-full h-14 bg-black text-white border border-white/10 hover:bg-white/5 transition-all duration-300 font-mono tracking-widest text-sm uppercase mb-8 rounded-xl" asChild>
+              <a href="#contact">Book A Call</a>
+            </Button>
+
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3">
+                <Check className="w-4 h-4 text-gray-500 shrink-0 mt-0.5" />
+                <span className="text-gray-400 text-sm">24/7 autonomous lead qualification & support.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Check className="w-4 h-4 text-gray-500 shrink-0 mt-0.5" />
+                <span className="text-gray-400 text-sm">Natural language intent recognition and routing.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Check className="w-4 h-4 text-gray-500 shrink-0 mt-0.5" />
+                <span className="text-gray-400 text-sm">Real-time handoff to human agents when needed.</span>
+              </li>
+            </ul>
           </motion.div>
+
+          {/* Card 2: Custom Engineering */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.1 }}
+            className="rounded-3xl border border-white/10 bg-[#0f0f15]/80 shadow-2xl p-8 md:p-10 relative overflow-hidden premium-glass-card"
+          >
+            <div className="flex items-start gap-4 mb-4">
+              <div className="w-8 flex flex-wrap gap-1 shrink-0 pt-1">
+                {[...Array(9)].map((_, i) => (
+                  <div key={i} className="w-2 h-2 rounded-full bg-[#00f0ff]/60" />
+                ))}
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-white mb-2"><span className="text-[#00f0ff]">Automated</span> Workflow Engineering</h3>
+                <p className="text-[#A1A1AA] text-sm leading-relaxed mb-6">
+                  Automate your clinical pipelines, CRM syncs, and securely handle patient data directly into your existing dashboard.
+                </p>
+              </div>
+            </div>
+
+            <Button className="w-full h-14 bg-black text-white border border-white/10 hover:bg-white/5 transition-all duration-300 font-mono tracking-widest text-sm uppercase mb-8 rounded-xl" asChild>
+              <a href="#contact">Book A Call</a>
+            </Button>
+
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3">
+                <Check className="w-4 h-4 text-gray-500 shrink-0 mt-0.5" />
+                <span className="text-gray-400 text-sm">Multi-channel intelligent patient follow-ups.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Check className="w-4 h-4 text-gray-500 shrink-0 mt-0.5" />
+                <span className="text-gray-400 text-sm">Custom logic builder for deterministic booking checks.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Check className="w-4 h-4 text-gray-500 shrink-0 mt-0.5" />
+                <span className="text-gray-400 text-sm">Automated EHR syncing and appointment logging.</span>
+              </li>
+            </ul>
+          </motion.div>
+
         </div>
       </div>
     </section>

@@ -45,14 +45,12 @@ export function Problem() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-3xl mx-auto mb-16 flex justify-center"
         >
-          <h2 className="text-[48px] md:text-5xl font-bricolage font-bold mb-6 text-white tracking-[-0.02em] leading-[1.1]">
-            You're losing patients every day and <span className="text-teal">you don't know it</span>
-          </h2>
-          <p className="text-lg text-[#A1A1AA] font-inter">
-            When your clinic is busy, closed, or understaffed, missed calls mean missed revenue.
-          </p>
+          <div className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-white/10 bg-[#161618] text-gray-300 text-sm font-medium hover:bg-white/10 transition-colors cursor-pointer shadow-lg">
+            Stop losing money everyday
+            <TrendingDown className="w-4 h-4 text-gray-400" />
+          </div>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto" style={{ perspective: "800px" }}>
@@ -62,15 +60,14 @@ export function Problem() {
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.6, delay: 0 }}
           >
-            <Card className="flex flex-col items-center text-center glow-card border-white/5 bg-black/40 h-full p-8 rounded-3xl backdrop-blur-md">
-              <div className="w-14 h-14 rounded-full bg-red-500/10 flex items-center justify-center mb-6">
-                <PhoneMissed className="w-7 h-7 text-red-500" />
+            <Card className="flex flex-col items-start text-left border-white/5 bg-[#121214] h-full p-8 rounded-3xl relative overflow-hidden group hover:border-white/10 transition-colors">
+              <div className="absolute bottom-0 left-0 right-0 h-48 bg-[radial-gradient(rgba(255,255,255,0.15)_2px,transparent_2px)] bg-[size:16px_16px] opacity-20" style={{ WebkitMaskImage: 'linear-gradient(to top, white, transparent)' }} />
+              <div className="relative z-10 w-full">
+                <h3 className="text-2xl font-bold mb-4 text-white font-sans tracking-tight">Outdated Workflows</h3>
+                <p className="text-[#A1A1AA] leading-relaxed font-sans mb-8">
+                  Manual data entry and disjointed tools are slowing down your team's true potential.
+                </p>
               </div>
-              <div className="text-4xl md:text-5xl font-bold text-white mb-2">
-                <AnimatedCounter value={25} suffix="%" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2 text-white">Missed Calls</h3>
-              <p className="text-[#A1A1AA]">25% of all incoming calls go unanswered.</p>
             </Card>
           </motion.div>
 
@@ -79,16 +76,21 @@ export function Problem() {
             whileInView={{ opacity: 1, rotateY: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.6, delay: 0.15 }}
+            className="transform md:-translate-y-4"
           >
-            <Card className="flex flex-col items-center text-center glow-card border-white/5 bg-black/40 h-full p-8 rounded-3xl backdrop-blur-md">
-              <div className="w-14 h-14 rounded-full bg-red-500/10 flex items-center justify-center mb-6">
-                <TrendingDown className="w-7 h-7 text-red-500" />
+            <Card className="flex flex-col items-start text-left border-white/5 bg-gradient-to-b from-[#1a1435] to-[#0c091a] h-full p-8 rounded-3xl relative overflow-hidden shadow-[0_0_40px_rgba(112,0,255,0.15)] group hover:shadow-[0_0_60px_rgba(112,0,255,0.25)] transition-all">
+              <div className="absolute bottom-0 left-0 right-0 h-48 bg-[radial-gradient(rgba(112,0,255,0.5)_2px,transparent_2px)] bg-[size:16px_16px] opacity-40" style={{ WebkitMaskImage: 'linear-gradient(to top, white, transparent)' }} />
+              <div className="relative z-10 w-full h-full flex flex-col">
+                <h3 className="text-2xl font-bold mb-4 text-white font-sans tracking-tight">AI-Powered<br/>Efficiency</h3>
+                <p className="text-[#A1A1AA] leading-relaxed font-sans mb-8 flex-1">
+                  Automate repetitive tasks, sync your data seamlessly, and focus on what actually scales your business.
+                </p>
+                <div className="flex justify-center mt-auto pb-2">
+                  <div className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white text-black font-semibold text-sm hover:scale-105 transition-transform cursor-pointer">
+                    Learn More <span className="text-black ml-1">→</span>
+                  </div>
+                </div>
               </div>
-              <div className="text-4xl md:text-5xl font-bold text-white mb-2">
-                <AnimatedCounter value={10000} prefix="$" suffix="+" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2 text-white">Lost Revenue</h3>
-              <p className="text-[#A1A1AA]">$10,000+ Average Monthly Revenue Lost.</p>
             </Card>
           </motion.div>
 
@@ -98,15 +100,14 @@ export function Problem() {
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <Card className="flex flex-col items-center text-center glow-card border-white/5 bg-black/40 h-full p-8 rounded-3xl backdrop-blur-md">
-              <div className="w-14 h-14 rounded-full bg-red-500/10 flex items-center justify-center mb-6">
-                <Voicemail className="w-7 h-7 text-red-500" />
+            <Card className="flex flex-col items-start text-left border-white/5 bg-[#121214] h-full p-8 rounded-3xl relative overflow-hidden group hover:border-white/10 transition-colors">
+              <div className="absolute bottom-0 left-0 right-0 h-48 bg-[radial-gradient(rgba(255,255,255,0.15)_2px,transparent_2px)] bg-[size:16px_16px] opacity-20" style={{ WebkitMaskImage: 'linear-gradient(to top, white, transparent)' }} />
+              <div className="relative z-10 w-full">
+                <h3 className="text-2xl font-bold mb-4 text-white font-sans tracking-tight">Missed Opportunities</h3>
+                <p className="text-[#A1A1AA] leading-relaxed font-sans mb-8">
+                  Without intelligent insights, you're leaving money on the table every single day.
+                </p>
               </div>
-              <div className="text-4xl md:text-5xl font-bold text-white mb-2">
-                <AnimatedCounter value={80} suffix="%" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2 text-white">No Voicemail</h3>
-              <p className="text-[#A1A1AA]">80% of New Patients Hang Up instead of leaving a message.</p>
             </Card>
           </motion.div>
         </div>
