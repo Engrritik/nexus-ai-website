@@ -5,7 +5,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 import * as THREE from "three";
 
-export type ParticleVariant = "wave" | "rise" | "fall" | "swirl";
+export type ParticleVariant = "wave" | "rise" | "fall" | "swirl" | "matrix";
 
 interface BackgroundParticlesProps {
   color: string;
@@ -19,15 +19,25 @@ function Particles({ color, variant, count }: BackgroundParticlesProps) {
   const positions = useMemo(() => {
     const positions = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      const x = (Math.random() - 0.5) * 20;
-      const y = (Math.random() - 0.5) * 10;
-      const z = (Math.random() - 0.5) * 10;
+      let x, y, z;
+      
+      if (variant === "matrix") {
+        // Structured vertical columns for a reliable "server rack / data stream" look
+        x = (Math.round((Math.random() - 0.5) * 40) / 2); // Quantized X positions (columns)
+        y = (Math.random() - 0.5) * 20;
+        z = (Math.round((Math.random() - 0.5) * 20) / 2); // Quantized Z positions
+      } else {
+        x = (Math.random() - 0.5) * 20;
+        y = (Math.random() - 0.5) * 10;
+        z = (Math.random() - 0.5) * 10;
+      }
+      
       positions[i * 3] = x;
       positions[i * 3 + 1] = y;
       positions[i * 3 + 2] = z;
     }
     return positions;
-  }, [count]);
+  }, [count, variant]);
 
   const initialPositions = useMemo(() => new Float32Array(positions), [positions]);
 
@@ -66,6 +76,12 @@ function Particles({ color, variant, count }: BackgroundParticlesProps) {
             nextZ = Math.sin(angle) * (radius * 0.8);
           }
           break;
+        case "matrix":
+          // Deterministic slow vertical rise
+          const speed = 0.5 + (i % 3) * 0.2; // slight variance in column speed
+          nextY = nextY + delta * speed;
+          if (nextY > 10) nextY = -10;
+          break;
       }
 
       positionsArray[i * 3] = nextX;
@@ -76,6 +92,7 @@ function Particles({ color, variant, count }: BackgroundParticlesProps) {
     
     if (variant === "wave") ref.current.rotation.y = time * 0.05;
     if (variant === "swirl") ref.current.rotation.y = time * 0.1;
+    // Matrix variant has no rotation, enforcing a strict, reliable grid structure
   });
 
   return (
@@ -83,10 +100,10 @@ function Particles({ color, variant, count }: BackgroundParticlesProps) {
       <PointMaterial
         transparent
         color={color}
-        size={0.06}
+        size={variant === "matrix" ? 0.04 : 0.06}
         sizeAttenuation={true}
         depthWrite={false}
-        opacity={0.3}
+        opacity={variant === "matrix" ? 0.5 : 0.3}
         blending={THREE.AdditiveBlending}
       />
     </Points>
@@ -95,7 +112,7 @@ function Particles({ color, variant, count }: BackgroundParticlesProps) {
 
 export function BackgroundScene({ 
   color = "#7000ff", 
-  variant = "wave",
+  variant = "matrix", // Defaulting to the new reliable matrix
   count = 1500
 }: { 
   color?: string; 
