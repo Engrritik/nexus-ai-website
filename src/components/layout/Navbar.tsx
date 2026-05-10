@@ -1,39 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { Menu, X, PhoneCall } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { Menu, X } from "lucide-react";
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
-  const [pulseBorder, setPulseBorder] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-      
-      const sections = document.querySelectorAll("section[id]");
-      let current = "";
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top <= 100 && rect.bottom >= 100) {
-          current = section.getAttribute("id") || "";
-        }
-      });
-      
-      if (current && current !== activeSection) {
-        setActiveSection(current);
-        setPulseBorder(true);
-        setTimeout(() => setPulseBorder(false), 1000);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const navLinks = [
     { name: "How it works", href: "#how-it-works" },
@@ -42,17 +14,11 @@ export function Navbar() {
   ];
 
   return (
-    <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ease-in-out border-b ${
-        isScrolled
-          ? "bg-black/85 backdrop-blur-[20px] saturate-180 " + (pulseBorder ? "border-teal shadow-[0_4px_20px_rgba(0,212,170,0.3)]" : "border-teal/10")
-          : "bg-transparent border-transparent py-4"
-      }`}
-    >
-      <div className="container mx-auto px-6 md:px-12 flex items-center justify-between py-2">
-        <Link href="/" className="flex items-center gap-2 group relative">
-          <img src='/logo.png' alt='Nexus AI' width={140} height={40} className="relative z-10" style={{height: '40px', width: '140px', objectFit: 'contain'}} />
-          <div className="absolute inset-0 bg-teal/30 blur-xl opacity-0 animate-[pulse-glow_10s_ease-in-out_infinite] z-0 pointer-events-none rounded-full" />
+    <header className="fixed top-0 w-full z-50 bg-white border-b border-[#f0f0f0]">
+      <div className="container mx-auto px-6 md:px-12 flex items-center justify-between py-4">
+        {/* Logo */}
+        <Link href="/" className="flex items-center">
+          <img src='/logo.png' alt='Nexus AI' width={140} height={40} className="h-8 w-auto object-contain filter invert opacity-90" />
         </Link>
 
         {/* Desktop Nav */}
@@ -61,25 +27,24 @@ export function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm font-inter text-gray-300 nav-link-glow relative group py-2"
+              className="text-[14px] font-normal font-sans text-[#6b7280] hover:text-[#1a1a2e] transition-colors"
             >
               {link.name}
-              <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#00f0ff] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
             </Link>
           ))}
-          <div className="flex items-center gap-4 ml-2">
-            <Button variant="ghost" className="select-none" asChild>
-              <Link href="#contact">Contact</Link>
-            </Button>
-            <Button className="bg-[#00f0ff] text-black font-semibold hover:bg-[#00d0e6] transition-all duration-300 hover:scale-[1.02] select-none" asChild>
-              <Link href="#contact">Book a Technical Review</Link>
-            </Button>
+          <div className="ml-4">
+            <Link
+              href="#contact"
+              className="inline-flex items-center gap-2 bg-[#111111] text-white px-6 py-2.5 rounded-full text-xs font-semibold font-sans tracking-wide uppercase hover:bg-black transition-colors"
+            >
+              <span className="tracking-widest opacity-60">•••</span> Book a Call
+            </Link>
           </div>
         </nav>
 
         {/* Mobile menu toggle */}
         <button
-          className="md:hidden text-gray-300 hover:text-white"
+          className="md:hidden text-[#1a1a2e]"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -88,24 +53,25 @@ export function Navbar() {
 
       {/* Mobile Nav */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full border-b border-white/10 bg-black/95 backdrop-blur-xl py-4 px-6 flex flex-col gap-4 shadow-2xl">
+        <div className="md:hidden absolute top-full left-0 w-full border-b border-[#f0f0f0] bg-white py-4 px-6 flex flex-col gap-4 shadow-sm">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="text-lg font-medium text-white py-2 nav-link-glow"
+              className="text-base font-medium text-[#6b7280]"
             >
               {link.name}
             </Link>
           ))}
-          <div className="flex flex-col gap-3 mt-4 pt-4 border-t border-white/10">
-            <Button variant="outline" className="w-full select-none" asChild>
-              <Link href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
-            </Button>
-            <Button className="w-full bg-[#00f0ff] text-black font-semibold hover:bg-[#00d0e6] transition-all duration-300 hover:scale-[1.02] select-none" asChild>
-              <Link href="#contact" onClick={() => setMobileMenuOpen(false)}>Book a Technical Review</Link>
-            </Button>
+          <div className="pt-4 border-t border-[#f0f0f0]">
+            <Link
+              href="#contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="inline-flex items-center justify-center gap-2 w-full bg-[#111111] text-white px-6 py-3 rounded-full text-xs font-semibold tracking-wide uppercase"
+            >
+              <span className="tracking-widest opacity-60">•••</span> Book a Call
+            </Link>
           </div>
         </div>
       )}

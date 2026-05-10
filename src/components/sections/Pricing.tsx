@@ -1,127 +1,139 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Check } from "lucide-react";
-import { Button } from "@/components/ui/Button";
-import { BackgroundScene } from "@/components/ui/BackgroundScene";
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import { Check, ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { DotCluster } from "@/components/ui/DotCluster";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function Pricing() {
-  const features = [
-    "24/7 AI Voice Receptionist",
-    "Natural, human-like conversations",
-    "Intelligent patient qualification",
-    "Direct calendar booking integration",
-    "Emergency call routing",
-    "Customizable clinic knowledge base",
-    "Call recordings and analytics dashboard"
-  ];
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    gsap.from('.pricing-header', {
+      y: 20,
+      opacity: 0,
+      duration: 0.6,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 85%",
+        once: true
+      }
+    });
+
+    const pricingCards = gsap.utils.toArray('.pricing-card');
+    gsap.from(pricingCards, {
+      y: 24,
+      opacity: 0,
+      duration: 0.5,
+      stagger: 0.1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 80%",
+        once: true
+      }
+    });
+  }, { scope: containerRef });
 
   return (
-    <section id="pricing" className="py-[100px] relative overflow-hidden bg-transparent border-y border-white/5">
-      {/* Dynamic Background */}
-      <BackgroundScene variant="wave" color="#00f0ff" count={800} />
-      
-      {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#00f0ff]/5 rounded-full blur-[150px] -z-10 pointer-events-none" />
-      
-      <div className="container mx-auto px-6 relative z-10">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-16"
-        >
-          <h2 className="text-[48px] md:text-5xl font-bold mb-6 text-white font-sans tracking-tight">
+    <section id="pricing" className="py-24 bg-white" ref={containerRef}>
+      <div className="container mx-auto px-6 md:px-12 max-w-[1000px]">
+        
+        <div className="pricing-header text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-4xl md:text-[56px] font-bold text-[#1a1a2e] font-serif tracking-tight">
             Custom AI Solutions,<br />Tailored to Your Clinic
           </h2>
-        </motion.div>
+        </div>
 
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-6">
           
           {/* Card 1: Inbound */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ type: "spring", stiffness: 200, damping: 20 }}
-            className="rounded-3xl border border-white/10 bg-[#0f0f15]/80 shadow-2xl p-8 md:p-10 relative overflow-hidden premium-glass-card"
-          >
-            <div className="flex items-start gap-4 mb-4">
-              <div className="w-8 flex flex-wrap gap-1 shrink-0 pt-1">
-                {[...Array(9)].map((_, i) => (
-                  <div key={i} className="w-2 h-2 rounded-full bg-[#7000ff]/60" />
-                ))}
+          <div className="pricing-card bg-white border border-[#e5e7eb] rounded-[16px] p-8 md:p-10 card-hover flex flex-col shadow-sm">
+            <div className="flex items-start gap-4 mb-6">
+              <div className="mt-1">
+                <DotCluster color="#8b5cf6" size={8} />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white mb-2"><span className="text-[#7000ff]">Inbound</span> AI Receptionist</h3>
-                <p className="text-[#A1A1AA] text-sm leading-relaxed mb-6">
+                <h3 className="text-[22px] font-bold text-[#1a1a2e] mb-2"><span className="text-[#8b5cf6]">Inbound</span> AI Receptionist</h3>
+                <p className="text-[#6b7280] leading-relaxed">
                   Engage patients instantly, answer clinical inquiries, and resolve standard booking requests entirely on autopilot.
                 </p>
               </div>
             </div>
 
-            <Button className="w-full h-14 bg-black text-white border border-white/10 hover:bg-white/5 transition-all duration-300 font-mono tracking-widest text-sm uppercase mb-8 rounded-xl" asChild>
-              <a href="#contact">Book A Call</a>
-            </Button>
+            <div className="mt-4 mb-8">
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-[#8b5cf6] shrink-0 mt-0.5" />
+                  <span className="text-[#6b7280] text-[15px]">24/7 autonomous lead qualification & support.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-[#8b5cf6] shrink-0 mt-0.5" />
+                  <span className="text-[#6b7280] text-[15px]">Natural language intent recognition and routing.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-[#8b5cf6] shrink-0 mt-0.5" />
+                  <span className="text-[#6b7280] text-[15px]">Real-time handoff to human agents when needed.</span>
+                </li>
+              </ul>
+            </div>
 
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <Check className="w-4 h-4 text-gray-500 shrink-0 mt-0.5" />
-                <span className="text-gray-400 text-sm">24/7 autonomous lead qualification & support.</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <Check className="w-4 h-4 text-gray-500 shrink-0 mt-0.5" />
-                <span className="text-gray-400 text-sm">Natural language intent recognition and routing.</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <Check className="w-4 h-4 text-gray-500 shrink-0 mt-0.5" />
-                <span className="text-gray-400 text-sm">Real-time handoff to human agents when needed.</span>
-              </li>
-            </ul>
-          </motion.div>
+            <div className="mt-auto pt-4">
+              <Link
+                href="#contact"
+                className="inline-flex items-center justify-center w-full bg-[#111111] text-white px-6 py-3.5 rounded-[8px] text-[13px] font-semibold tracking-[0.05em] uppercase hover:bg-black transition-colors"
+              >
+                Book a Call
+              </Link>
+            </div>
+          </div>
 
           {/* Card 2: Custom Engineering */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.1 }}
-            className="rounded-3xl border border-white/10 bg-[#0f0f15]/80 shadow-2xl p-8 md:p-10 relative overflow-hidden premium-glass-card"
-          >
-            <div className="flex items-start gap-4 mb-4">
-              <div className="w-8 flex flex-wrap gap-1 shrink-0 pt-1">
-                {[...Array(9)].map((_, i) => (
-                  <div key={i} className="w-2 h-2 rounded-full bg-[#00f0ff]/60" />
-                ))}
+          <div className="pricing-card bg-white border border-[#e5e7eb] rounded-[16px] p-8 md:p-10 card-hover flex flex-col shadow-sm">
+            <div className="flex items-start gap-4 mb-6">
+              <div className="mt-1">
+                <DotCluster color="#00d4aa" size={8} />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white mb-2"><span className="text-[#00f0ff]">Automated</span> Workflow Engineering</h3>
-                <p className="text-[#A1A1AA] text-sm leading-relaxed mb-6">
+                <h3 className="text-[22px] font-bold text-[#1a1a2e] mb-2"><span className="text-[#00d4aa]">Automated</span> Workflow Engineering</h3>
+                <p className="text-[#6b7280] leading-relaxed">
                   Automate your clinical pipelines, CRM syncs, and securely handle patient data directly into your existing dashboard.
                 </p>
               </div>
             </div>
 
-            <Button className="w-full h-14 bg-black text-white border border-white/10 hover:bg-white/5 transition-all duration-300 font-mono tracking-widest text-sm uppercase mb-8 rounded-xl" asChild>
-              <a href="#contact">Book A Call</a>
-            </Button>
+            <div className="mt-4 mb-8">
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-[#00d4aa] shrink-0 mt-0.5" />
+                  <span className="text-[#6b7280] text-[15px]">Multi-channel intelligent patient follow-ups.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-[#00d4aa] shrink-0 mt-0.5" />
+                  <span className="text-[#6b7280] text-[15px]">Custom logic builder for deterministic booking checks.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-[#00d4aa] shrink-0 mt-0.5" />
+                  <span className="text-[#6b7280] text-[15px]">Automated EHR syncing and appointment logging.</span>
+                </li>
+              </ul>
+            </div>
 
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <Check className="w-4 h-4 text-gray-500 shrink-0 mt-0.5" />
-                <span className="text-gray-400 text-sm">Multi-channel intelligent patient follow-ups.</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <Check className="w-4 h-4 text-gray-500 shrink-0 mt-0.5" />
-                <span className="text-gray-400 text-sm">Custom logic builder for deterministic booking checks.</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <Check className="w-4 h-4 text-gray-500 shrink-0 mt-0.5" />
-                <span className="text-gray-400 text-sm">Automated EHR syncing and appointment logging.</span>
-              </li>
-            </ul>
-          </motion.div>
+            <div className="mt-auto pt-4">
+              <Link
+                href="#contact"
+                className="inline-flex items-center justify-center w-full bg-[#111111] text-white px-6 py-3.5 rounded-[8px] text-[13px] font-semibold tracking-[0.05em] uppercase hover:bg-black transition-colors"
+              >
+                Book a Call
+              </Link>
+            </div>
+          </div>
 
         </div>
       </div>

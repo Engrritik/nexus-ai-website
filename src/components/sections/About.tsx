@@ -1,85 +1,73 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import Image from "next/image";
-import { Card } from "@/components/ui/Card";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function About() {
-  const stats = [
-    { label: "< 1s", description: "Latency for natural conversational response" },
-    { label: "100%", description: "Calendar Sync with zero double-booking" },
-    { label: "1 Mission", description: "Zero missed calls for dental clinics" }
-  ];
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    gsap.from('.about-content', {
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.15,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 80%",
+        once: true
+      }
+    });
+  }, { scope: containerRef });
 
   return (
-    <section id="about" className="py-[100px] relative overflow-hidden bg-transparent">
+    <section id="about" className="py-24 bg-white" ref={containerRef}>
       
-      <div className="container mx-auto px-6">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-16"
-        >
-          <div className="inline-block mb-4 px-4 py-1.5 rounded-full border border-teal/30 bg-teal/10 text-teal text-sm font-medium tracking-wide">
+      <div className="container mx-auto px-6 md:px-12 max-w-[1000px]">
+        <div className="about-content text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-block mb-4 px-3 py-1 rounded-full border border-[#e5e7eb] bg-[#f8f8f8] text-[#6b7280] text-[11px] font-medium tracking-[0.08em] uppercase">
             The Founder
           </div>
-          <h2 className="text-[48px] md:text-5xl font-bold mb-6 text-white">
+          <h2 className="text-4xl md:text-[48px] font-bold mb-6 text-[#1a1a2e] font-serif tracking-tight">
             Built by someone who <br className="hidden md:block" />
-            <span className="text-teal">understands the problem</span>
+            understands the problem
           </h2>
-        </motion.div>
+        </div>
 
-        <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-12 gap-12 items-center">
+        <div className="about-content max-w-4xl mx-auto">
+          <div className="bg-white border border-[#e5e7eb] rounded-[24px] overflow-hidden flex flex-col md:flex-row shadow-sm">
             
             {/* Left side: Profile Photo */}
-            <motion.div
-              initial={{ opacity: 0, x: -80 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="md:col-span-4 h-full"
-            >
-              <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto">
-                <div className="w-full h-full rounded-2xl overflow-hidden shadow-2xl relative">
-                  <Image 
-                    src="/ritik.jpeg" 
-                    alt="Ritik Kumar - Founder" 
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 256px, 320px"
-                  />
-                </div>
-                {/* Decorative elements */}
-                <div className="absolute -inset-4 bg-teal/10 blur-xl rounded-2xl -z-10" />
-              </div>
-            </motion.div>
+            <div className="md:w-2/5 relative h-64 md:h-auto border-b md:border-b-0 md:border-r border-[#e5e7eb]">
+              <Image 
+                src="/ritik.jpeg" 
+                alt="Ritik Kumar - Founder" 
+                fill
+                loading="lazy"
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 400px"
+              />
+            </div>
 
             {/* Right side: Bio Card */}
-            <motion.div
-              initial={{ opacity: 0, x: 80 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="md:col-span-8 h-full"
-            >  
-              <Card className="p-8 md:p-10 border-white/5 bg-black/40 shadow-xl glow-card backdrop-blur-md">
-                <div className="mb-6 pb-6 border-b border-white/10">
-                  <h3 className="text-3xl font-bold text-white mb-2">Ritik Kumar</h3>
-                  <p className="text-teal font-medium tracking-wide">Founder, Nexus AI</p>
-                </div>
+            <div className="md:w-3/5 p-8 md:p-12 bg-[#f8f8f8]">
+              <div className="mb-6 pb-6 border-b border-[#e5e7eb]">
+                <h3 className="text-2xl font-bold text-[#1a1a2e] mb-1">Ritik Kumar</h3>
+                <p className="text-[#6b7280] font-medium text-sm">Founder, Nexus AI</p>
+              </div>
 
-                <div className="space-y-6 text-[#A1A1AA] text-lg leading-relaxed mb-8">
-                  <p>
-                    I provide 24/7 technical oversight to ensure your AI Agent never misses a beat. I work directly with every clinic to guarantee a sub-1-second response time and seamless practice management integration.
-                  </p>
-                </div>
-
-
-              </Card>
-            </motion.div>
+              <div className="space-y-6 text-[#6b7280] text-[15px] leading-relaxed">
+                <p>
+                  I provide 24/7 technical oversight to ensure your AI Agent never misses a beat. I work directly with every clinic to guarantee a sub-1-second response time and seamless practice management integration.
+                </p>
+              </div>
+            </div>
 
           </div>
         </div>

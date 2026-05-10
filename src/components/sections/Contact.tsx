@@ -1,89 +1,112 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/Button";
-import { Mail, ArrowRight, Linkedin } from "lucide-react";
-import { BackgroundScene } from "@/components/ui/BackgroundScene";
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import { Mail, ArrowRight } from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function Contact() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    gsap.from('.contact-text', {
+      x: -30,
+      opacity: 0,
+      duration: 0.6,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 80%",
+        once: true
+      }
+    });
+
+    gsap.from('.contact-form', {
+      x: 30,
+      opacity: 0,
+      duration: 0.6,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 80%",
+        once: true
+      }
+    });
+  }, { scope: containerRef });
+
   return (
-    <section id="contact" className="py-[100px] relative overflow-hidden bg-transparent">
-      <BackgroundScene variant="swirl" color="#00ffa3" count={400} />
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Form elements mapped structurally identical to requirement */}
-        <div className="grid md:grid-cols-2 gap-16 max-w-6xl mx-auto items-center">
+    <section id="contact" className="py-24 bg-[#f8f8f8]" ref={containerRef}>
+      <div className="container mx-auto px-6 md:px-12">
+        <div className="grid md:grid-cols-2 gap-16 max-w-[1100px] mx-auto items-center">
           
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <h2 className="text-4xl md:text-6xl font-bricolage font-bold mb-6 text-white leading-[1.05] tracking-[-0.03em]">
+          <div className="contact-text">
+            <h2 className="text-4xl md:text-[56px] font-bold mb-6 text-[#1a1a2e] leading-tight font-serif tracking-tight">
               Ready to stop <br/>
-              <span className="text-teal">missing patients?</span>
+              missing patients?
             </h2>
-            <p className="text-xl text-[#A1A1AA] mb-10 leading-[1.7] font-inter">
+            <p className="text-lg text-[#6b7280] mb-12 leading-relaxed">
               Drop your details below and we'll be in touch to schedule your free 15-min demo.
             </p>
             
             <div className="space-y-6">
-              <div className="flex items-center gap-4 text-gray-300">
-                <div className="w-12 h-12 rounded-full border border-[#00f0ff]/20 bg-[#00f0ff]/5 flex items-center justify-center">
-                  <Mail className="w-5 h-5 text-[#00f0ff]" />
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full border border-[#e5e7eb] bg-white flex items-center justify-center shadow-sm">
+                  <Mail className="w-5 h-5 text-[#1a1a2e]" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500 uppercase tracking-widest mb-1 font-mono font-medium text-[11px] tracking-[0.08em]">Email</p>
-                  <a href="mailto:hello@nexus-ai.com" className="text-lg text-white hover:text-[#00f0ff] transition-colors font-sans">
+                  <p className="text-[11px] font-bold text-[#6b7280] uppercase tracking-[0.08em] mb-1">Email</p>
+                  <a href="mailto:hello@nexus-ai.com" className="text-lg text-[#1a1a2e] font-medium hover:text-[#00d4aa] transition-colors">
                     hello@nexus-ai.com
                   </a>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Form bounded wrapper without delay applying the background glassmorphism instantly */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <div className="glass bg-black/40 border border-white/10 shadow-xl rounded-3xl p-8 backdrop-blur-xl glow-card">
+          <div className="contact-form">
+            <div className="bg-white border border-[#e5e7eb] shadow-sm rounded-[24px] p-8 md:p-10">
               <form action="https://formspree.io/f/myknoypk" method="POST" className="space-y-6">
+                
                 <div className="grid md:grid-cols-2 gap-6">
-                  <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0 }} className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-medium text-[#A1A1AA]">Full Name</label>
-                    <input name="name" required type="text" id="name" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-teal/50 transition-all placeholder:text-gray-500 font-inter" placeholder="Dr. John Smith" />
-                  </motion.div>
-                  <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.08 }} className="space-y-2">
-                    <label htmlFor="clinic" className="text-sm font-medium text-[#A1A1AA]">Clinic Name</label>
-                    <input name="clinic" required type="text" id="clinic" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-teal/50 transition-all placeholder:text-gray-500 font-inter" placeholder="Smile Dental" />
-                  </motion.div>
+                  <div className="space-y-2">
+                    <label htmlFor="name" className="text-[13px] font-bold text-[#1a1a2e]">Full Name</label>
+                    <input name="name" required type="text" id="name" className="w-full bg-[#f8f8f8] border border-[#e5e7eb] rounded-xl px-4 py-3.5 text-[#1a1a2e] focus:outline-none focus:border-[#1a1a2e] transition-colors placeholder:text-[#9ca3af] text-[15px]" placeholder="Dr. John Smith" />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="clinic" className="text-[13px] font-bold text-[#1a1a2e]">Clinic Name</label>
+                    <input name="clinic" required type="text" id="clinic" className="w-full bg-[#f8f8f8] border border-[#e5e7eb] rounded-xl px-4 py-3.5 text-[#1a1a2e] focus:outline-none focus:border-[#1a1a2e] transition-colors placeholder:text-[#9ca3af] text-[15px]" placeholder="Smile Dental" />
+                  </div>
                 </div>
-                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.16 }} className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium text-[#A1A1AA]">Email Address</label>
-                  <input name="email" required type="email" id="email" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-teal/50 transition-all placeholder:text-gray-500 font-inter" placeholder="john@smiledental.com" />
-                </motion.div>
+
+                <div className="space-y-2">
+                  <label htmlFor="email" className="text-[13px] font-bold text-[#1a1a2e]">Email Address</label>
+                  <input name="email" required type="email" id="email" className="w-full bg-[#f8f8f8] border border-[#e5e7eb] rounded-xl px-4 py-3.5 text-[#1a1a2e] focus:outline-none focus:border-[#1a1a2e] transition-colors placeholder:text-[#9ca3af] text-[15px]" placeholder="john@smiledental.com" />
+                </div>
+
                 <div className="grid md:grid-cols-2 gap-6">
-                  <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.24 }} className="space-y-2">
-                    <label htmlFor="phone" className="text-sm font-medium text-[#A1A1AA]">Phone Number</label>
-                    <input name="phone" required type="tel" id="phone" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-teal/50 transition-all placeholder:text-gray-500 font-inter" placeholder="(555) 123-4567" />
-                  </motion.div>
-                  <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.30 }} className="space-y-2">
-                    <label htmlFor="software" className="text-sm font-medium text-[#A1A1AA]">Current Scheduling Software</label>
-                    <input name="software" required type="text" id="software" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-teal/50 transition-all placeholder:text-gray-500 font-inter" placeholder="e.g., Dentrix, Open Dental, Cal.com" />
-                  </motion.div>
+                  <div className="space-y-2">
+                    <label htmlFor="phone" className="text-[13px] font-bold text-[#1a1a2e]">Phone Number</label>
+                    <input name="phone" required type="tel" id="phone" className="w-full bg-[#f8f8f8] border border-[#e5e7eb] rounded-xl px-4 py-3.5 text-[#1a1a2e] focus:outline-none focus:border-[#1a1a2e] transition-colors placeholder:text-[#9ca3af] text-[15px]" placeholder="(555) 123-4567" />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="software" className="text-[13px] font-bold text-[#1a1a2e]">Scheduling Software</label>
+                    <input name="software" required type="text" id="software" className="w-full bg-[#f8f8f8] border border-[#e5e7eb] rounded-xl px-4 py-3.5 text-[#1a1a2e] focus:outline-none focus:border-[#1a1a2e] transition-colors placeholder:text-[#9ca3af] text-[15px]" placeholder="Dentrix, Cal.com, etc." />
+                  </div>
                 </div>
                 
-                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.32 }}>
-                  <Button type="submit" size="lg" className="w-full text-lg mt-4 h-14 bg-[#00f0ff] text-black font-semibold border-none transition-all duration-300 hover:scale-[1.02]">
+                <div className="pt-2">
+                  <button type="submit" className="w-full flex items-center justify-center bg-[#111111] text-white px-8 py-4 rounded-xl text-[14px] font-bold tracking-wide uppercase hover:bg-black transition-colors">
                     Book a Technical Review <ArrowRight className="w-5 h-5 ml-2" />
-                  </Button>
-                </motion.div>
+                  </button>
+                </div>
+
               </form>
             </div>
-          </motion.div>
+          </div>
+
         </div>
       </div>
     </section>

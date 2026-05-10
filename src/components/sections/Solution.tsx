@@ -1,104 +1,166 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { BackgroundScene } from "@/components/ui/BackgroundScene";
-import { TiltCard } from "@/components/ui/TiltCard";
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import { DotCluster } from "@/components/ui/DotCluster";
+import Link from "next/link";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function Solution() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const cards = [
     {
-      titleColor: "text-[#00f0ff]",
-      dotColor: "bg-[#00f0ff]/60",
       titleWord: "Inbound",
-      titleRest: "Voice Receptionist",
-      description: "24/7 autonomous booking & lead qualification. Natural language intent recognition with zero-hallucination architecture.",
-      delay: 0
+      titleColor: "text-[#00d4aa]",
+      titleRest: "AI Receptionist",
+      dotColor: "#00d4aa",
+      description: "Answer every call instantly, qualify patients, and book appointments directly to your calendar — fully autonomous, 24/7.",
+      bullets: [
+        "24/7 autonomous booking & qualification",
+        "Natural language intent recognition",
+        "Real-time handoff to human agents when needed"
+      ],
+      fullWidth: false
     },
     {
-      titleColor: "text-[#7000ff]",
-      dotColor: "bg-[#7000ff]/60",
-      titleWord: "Custom",
-      titleRest: "Engineering & Logic",
-      description: "Tailored n8n workflows and custom webhook integrations. We build the plumbing that connects your voice engine to your actual business tools.",
-      delay: 0.1
+      titleWord: "Outbound",
+      titleColor: "text-[#8b5cf6]",
+      titleRest: "AI Solutions",
+      dotColor: "#8b5cf6",
+      description: "Automate your follow-up sequences and re-engagement campaigns. Never let a warm lead go cold again.",
+      bullets: [
+        "Automated follow-up sequences",
+        "Custom knowledge base for personalization",
+        "CRM sync and lead tracking"
+      ],
+      fullWidth: false
     },
     {
-      titleColor: "text-[#00ffa3]",
-      dotColor: "bg-[#00ffa3]/60",
-      titleWord: "Seamless",
-      titleRest: "Calendar Sync",
-      description: "Bi-directional integration with Cal.com and existing clinic CRMs. Deterministic availability checking to completely eliminate double-booking.",
-      delay: 0.2
+      titleWord: "Calendar",
+      titleColor: "text-[#10b981]",
+      titleRest: "Sync Engine",
+      dotColor: "#10b981",
+      description: "Bi-directional Cal.com integration with deterministic availability checking. Zero double-bookings, guaranteed.",
+      bullets: [
+        "Real-time Cal.com availability checking",
+        "Eliminates double-booking completely",
+        "Works with existing clinic scheduling software"
+      ],
+      fullWidth: false
     },
     {
-      titleColor: "text-[#ff00a0]",
-      dotColor: "bg-[#ff00a0]/60",
       titleWord: "Real-Time",
-      titleRest: "Analytics & Routing",
-      description: "Sub-second latency with full call transcripts, intent tagging, and actionable summaries pushed directly to your Slack or dashboard.",
-      delay: 0.3
+      titleColor: "text-[#f97316]",
+      titleRest: "Analytics",
+      dotColor: "#f97316",
+      description: "Full call transcripts, intent tagging, and actionable summaries pushed to your Slack or dashboard instantly.",
+      bullets: [
+        "Sub-second latency call processing",
+        "Intent tagging and classification",
+        "Slack and dashboard integrations"
+      ],
+      fullWidth: false
+    },
+    {
+      titleWord: "Custom",
+      titleColor: "text-[#ef4444]",
+      titleRest: "AI Engineering",
+      dotColor: "#ef4444",
+      description: "Tailored n8n workflows and custom webhook integrations. We build the exact automation your clinic needs.",
+      bullets: [
+        "Custom n8n workflow development",
+        "Webhook and API integrations",
+        "Ongoing optimization and maintenance"
+      ],
+      fullWidth: true
     }
   ];
 
+  useGSAP(() => {
+    gsap.from('.solution-header', {
+      y: 20,
+      opacity: 0,
+      duration: 0.6,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 85%",
+        once: true
+      }
+    });
+
+    const solutionCards = gsap.utils.toArray('.solution-card');
+    gsap.from(solutionCards, {
+      y: 24,
+      opacity: 0,
+      duration: 0.5,
+      stagger: 0.08,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 80%",
+        once: true
+      }
+    });
+  }, { scope: containerRef });
+
   return (
-    <section id="solutions" className="py-[100px] relative overflow-hidden bg-transparent">
-      {/* Dynamic Background */}
-      <BackgroundScene variant="swirl" color="#7000ff" count={800} />
-      
-      <div className="container relative z-10 px-6 mx-auto">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-20"
-        >
-          <div className="inline-block mb-4 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-gray-300 text-sm font-medium tracking-wide">
-            Specialized Solutions
-          </div>
-          <h2 className="text-[40px] md:text-5xl font-bold mb-6 text-white tracking-tight leading-[1.1]">
-            Intelligent Automation for<br />Modern Clinics.
+    <section id="solutions" className="py-24 bg-[#f8f8f8]" ref={containerRef}>
+      <div className="container mx-auto px-6 md:px-12 max-w-[1200px]">
+        
+        <div className="solution-header text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-4xl md:text-[56px] font-bold text-[#1a1a2e] font-serif tracking-tight leading-tight">
+            Custom AI Solutions, Tailored to Your Business
           </h2>
-        </motion.div>
+        </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-6">
           {cards.map((card, idx) => (
-            <motion.div
+            <div
               key={idx}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ type: "spring", stiffness: 200, damping: 20, delay: card.delay }}
-              className="h-full"
+              className={`solution-card bg-white border border-[#e5e7eb] rounded-[16px] p-8 md:p-10 card-hover flex flex-col ${card.fullWidth ? 'md:col-span-2' : ''}`}
             >
-              <TiltCard>
-                <div className="rounded-3xl border border-white/10 bg-[#0f0f15]/80 shadow-2xl p-8 md:p-10 relative overflow-hidden premium-glass-card h-full flex flex-col group">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="w-8 flex flex-wrap gap-1 shrink-0 pt-1">
-                      {[...Array(9)].map((_, i) => (
-                        <div key={i} className={`w-2 h-2 rounded-full ${card.dotColor}`} />
-                      ))}
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-white mb-2 tracking-tight">
-                        <span className={card.titleColor}>{card.titleWord}</span> {card.titleRest}
-                      </h3>
-                      <p className="text-[#A1A1AA] text-sm leading-relaxed mb-6 font-sans">
-                        {card.description}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="mt-auto pt-4">
-                    <a href="#contact" className="block w-full text-center py-3.5 bg-black text-white border border-white/10 hover:bg-white/5 hover:border-white/20 transition-all duration-300 font-mono tracking-widest text-xs uppercase rounded-xl">
-                      Book A Call
-                    </a>
-                  </div>
+              <div className="flex items-start gap-5 mb-6">
+                <div className="mt-1">
+                  <DotCluster color={card.dotColor} size={8} />
                 </div>
-              </TiltCard>
-            </motion.div>
+                <div>
+                  <h3 className="text-[22px] font-bold text-[#1a1a2e] mb-3">
+                    <span className={card.titleColor}>{card.titleWord}</span> {card.titleRest}
+                  </h3>
+                  <p className="text-[#6b7280] leading-relaxed">
+                    {card.description}
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-4 mb-8">
+                <ul className="space-y-3">
+                  {card.bullets.map((bullet, i) => (
+                    <li key={i} className="flex items-start gap-3 text-[14px] text-[#6b7280]">
+                      <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#1a1a2e] opacity-30 flex-shrink-0" />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="mt-auto pt-2">
+                <Link
+                  href="#contact"
+                  className="inline-flex items-center justify-center w-full bg-[#111111] text-white px-6 py-3.5 rounded-[8px] text-[13px] font-semibold tracking-[0.05em] uppercase hover:bg-black transition-colors"
+                >
+                  Book a Call
+                </Link>
+              </div>
+            </div>
           ))}
         </div>
+
       </div>
     </section>
   );

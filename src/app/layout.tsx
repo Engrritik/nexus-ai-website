@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
+import { Inter, Instrument_Serif } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SmoothScrolling } from "@/components/ui/SmoothScrolling";
@@ -11,15 +11,9 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
-  weight: ["400", "500", "600", "700", "800"],
-  subsets: ["latin"],
-});
-
-const jetbrains = JetBrains_Mono({
-  variable: "--font-mono",
-  weight: ["400", "500"],
+const instrument = Instrument_Serif({
+  variable: "--font-instrument",
+  weight: ["400"],
   subsets: ["latin"],
 });
 
@@ -36,15 +30,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} h-full antialiased dark`}
+      className={`${inter.variable} ${instrument.variable} h-full antialiased`}
     >
-      <body className={`min-h-full flex flex-col text-foreground antialiased selection:bg-purple-500/30 selection:text-white font-sans ${inter.variable} ${bricolage.variable} ${jetbrains.variable}`}>
-        {/* Global Dark Theme Backgrounds */}
-        <div className="fixed inset-0 z-[-1] pointer-events-none bg-gradient-to-br from-[#050505] to-[#0f0f15]">
-          <div className="absolute inset-0 bg-grid opacity-20" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,_rgba(0,240,255,0.03)_0%,_transparent_50%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,_rgba(112,0,255,0.03)_0%,_transparent_50%)]" />
-        </div>
+      <body className={`min-h-full flex flex-col text-[#6b7280] bg-[#ffffff] antialiased selection:bg-[#00d4aa]/30 selection:text-black font-sans ${inter.variable} ${instrument.variable}`}>
         <SmoothScrolling>
           <Navbar />
           <main className="flex-1">
