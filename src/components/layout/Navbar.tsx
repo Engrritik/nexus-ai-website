@@ -18,7 +18,7 @@ export function Navbar() {
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between py-4">
         {/* Logo */}
         <Link href="/" className="flex items-center">
-          <img src='/logo.png' alt='Nexus AI' width={140} height={40} className="h-8 w-auto object-contain filter invert opacity-90" />
+          <img src='/mainlogo.png' alt='Nexus AI' width={140} height={40} className="h-8 w-auto object-contain filter invert opacity-90" />
         </Link>
 
         {/* Desktop Nav */}

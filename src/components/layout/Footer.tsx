@@ -14,7 +14,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           
           <div className="flex items-center">
-            <img src='/logo.png' alt='Nexus AI' className="h-8 w-auto object-contain filter invert opacity-80" />
+            <img src='/mainlogo.png' alt='Nexus AI' className="h-8 w-auto object-contain filter invert opacity-80" />
           </div>
 
           <div className="flex items-center gap-8">
