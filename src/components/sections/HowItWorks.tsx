@@ -176,21 +176,35 @@ export function HowItWorks() {
                 }}
               />
               <div className="relative z-10 p-[28px] h-full flex flex-col">
-                <div className="h-[100px] w-full mb-4 relative flex items-center justify-center">
-                  <div className="absolute anim-float-1" style={{ top: '20px', left: '10%' }}>
-                    <div className="w-[36px] h-[36px] bg-[#3b82f6] rounded-[8px] flex items-center justify-center text-white font-bold text-lg shadow-sm">C</div>
-                  </div>
-                  <div className="absolute anim-float-2" style={{ top: '50px', left: '30%' }}>
-                    <div className="w-[36px] h-[36px] bg-[#a855f7] rounded-[8px] flex items-center justify-center text-white font-bold text-lg shadow-sm">S</div>
-                  </div>
-                  <div className="absolute anim-float-3" style={{ top: '10px', left: '50%' }}>
-                    <div className="w-[36px] h-[36px] bg-[#f97316] rounded-[8px] flex items-center justify-center text-white font-bold text-lg shadow-sm">n</div>
-                  </div>
-                  <div className="absolute anim-float-4" style={{ top: '60px', left: '70%' }}>
-                    <div className="w-[36px] h-[36px] bg-[#1a1a2e] rounded-[8px] flex items-center justify-center text-white font-bold text-lg shadow-sm">N</div>
-                  </div>
-                  <div className="absolute anim-float-5" style={{ top: '25px', left: '85%' }}>
-                    <div className="w-[36px] h-[36px] bg-[#22c55e] rounded-[8px] flex items-center justify-center text-white font-bold text-lg shadow-sm">W</div>
+                <div className="h-[100px] w-full mb-4 flex items-center justify-center">
+                  <div className="flex gap-4 items-center">
+                    <div className="anim-float-1">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="28" height="28" className="text-[#a1a1aa] hover:text-[#1a1a2e] transition-colors duration-300">
+                        <circle cx="18" cy="18" r="3"></circle>
+                        <circle cx="6" cy="6" r="3"></circle>
+                        <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+                        <path d="M11 18H8a2 2 0 0 1-2-2V9"></path>
+                      </svg>
+                    </div>
+                    <div className="anim-float-2">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="28" height="28" className="text-[#a1a1aa] hover:text-[#1a1a2e] transition-colors duration-300">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                        <path d="M8 14h.01"></path>
+                        <path d="M12 14h.01"></path>
+                        <path d="M16 14h.01"></path>
+                        <path d="M8 18h.01"></path>
+                        <path d="M12 18h.01"></path>
+                        <path d="M16 18h.01"></path>
+                      </svg>
+                    </div>
+                    <div className="anim-float-3">
+                      <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" className="text-[#a1a1aa] hover:text-[#1a1a2e] transition-colors duration-300">
+                        <path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1 2.521-2.52A2.528 2.528 0 0 1 13.877 5.042a2.527 2.527 0 0 1-2.521 2.52H8.834v-2.52zM8.834 6.313a2.527 2.527 0 0 1 2.521 2.521 2.527 2.527 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.835a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.835a2.527 2.527 0 0 1-2.522 2.52h-2.522v-2.52zM17.688 8.835a2.527 2.527 0 0 1-2.523 2.52 2.527 2.527 0 0 1-2.52-2.52V2.522A2.528 2.528 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.313zM15.165 18.958a2.528 2.528 0 0 1-2.523 2.522A2.528 2.528 0 0 1 10.12 18.958a2.527 2.527 0 0 1 2.52-2.522h2.523v2.522zM15.165 17.687a2.527 2.527 0 0 1-2.523-2.522 2.527 2.527 0 0 1 2.523-2.521h6.313A2.528 2.528 0 0 1 24 15.166a2.528 2.528 0 0 1-2.522 2.521h-6.313z"/>
+                      </svg>
+                    </div>
                   </div>
                 </div>
                 <h3 className="text-xl font-bold text-[#1a1a2e] mb-3">Seamless Integration</h3>
