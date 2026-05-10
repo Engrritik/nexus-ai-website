@@ -3,20 +3,19 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
+import { useCustomGSAP } from "@/hooks/useGSAP";
 import { Mail, ArrowRight } from "lucide-react";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export function Contact() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
-    gsap.from('.contact-text', {
-      x: -30,
+  useCustomGSAP(() => {
+    // Headline animation
+    gsap.from('h2', {
+      y: 30,
       opacity: 0,
-      duration: 0.6,
-      ease: "power2.out",
+      duration: 0.7,
+      ease: "power3.out",
       scrollTrigger: {
         trigger: containerRef.current,
         start: "top 80%",
@@ -35,7 +34,7 @@ export function Contact() {
         once: true
       }
     });
-  }, { scope: containerRef });
+  }, [containerRef]);
 
   return (
     <section id="contact" className="py-24 bg-[#f8f8f8]" ref={containerRef}>

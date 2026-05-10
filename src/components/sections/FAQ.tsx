@@ -1,11 +1,8 @@
-'use client';
+"use client";
 
-import { useState, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
-
-gsap.registerPlugin(ScrollTrigger);
+import { useState, useRef } from "react";
+import gsap from "gsap";
+import { useCustomGSAP } from "@/hooks/useGSAP";
 
 const faqData = [
   {
@@ -34,7 +31,20 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
+  useCustomGSAP(() => {
+    // Headline animation
+    gsap.from('h2', {
+      y: 30,
+      opacity: 0,
+      duration: 0.7,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 80%",
+        once: true
+      }
+    });
+
     gsap.from('.faq-item', {
       y: 20,
       opacity: 0,
@@ -47,12 +57,12 @@ export function FAQ() {
         once: true
       }
     });
-  }, { scope: containerRef });
+  }, [containerRef]);
 
   return (
     <section ref={containerRef} className="py-24 bg-white">
       <div className="max-w-3xl mx-auto px-6">
-        <h2 className="text-4xl md:text-5xl font-bold text-center text-[#1a1a2e] mb-12">
+        <h2 className="text-4xl md:text-[56px] font-bold text-center text-[#1a1a2e] mb-12 font-serif tracking-tight">
           Questions you may have
         </h2>
         
@@ -62,22 +72,38 @@ export function FAQ() {
             return (
               <div 
                 key={idx} 
-                className="faq-item bg-white border border-[#e5e7eb] rounded-xl overflow-hidden cursor-pointer"
+                className="faq-item bg-white border border-[#e5e7eb] rounded-[16px] overflow-hidden cursor-pointer hover:border-[#d1d5db] transition-colors"
                 onClick={() => setOpenIndex(isOpen ? null : idx)}
               >
-                <div className="p-5 md:px-6 flex justify-between items-center">
-                  <h3 className="font-medium text-[#1a1a2e]">{faq.question}</h3>
+                <div className="p-5 md:px-6 flex justify-between items-center bg-[#f8f8f8]">
+                  <h3 className="font-bold text-[#1a1a2e] text-[16px]">{faq.question}</h3>
                   <div className="flex-shrink-0 ml-4 relative w-6 h-6 flex items-center justify-center">
-                    <div className={`absolute w-4 h-[2px] bg-[#6b7280] transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}></div>
-                    <div className={`absolute w-4 h-[2px] bg-[#6b7280] transition-transform duration-300 ${isOpen ? 'rotate-0' : 'rotate-90'}`}></div>
+                    <div 
+                      className="absolute w-4 h-[2px] bg-[#1a1a2e] transition-transform"
+                      style={{ 
+                        transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)',
+                        transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)' 
+                      }}
+                    />
+                    <div 
+                      className="absolute w-4 h-[2px] bg-[#1a1a2e] transition-transform"
+                      style={{ 
+                        transform: isOpen ? 'rotate(45deg)' : 'rotate(90deg)',
+                        transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)' 
+                      }}
+                    />
                   </div>
                 </div>
                 
                 <div 
-                  className="overflow-hidden transition-all duration-300 ease-in-out"
-                  style={{ maxHeight: isOpen ? '200px' : '0px', opacity: isOpen ? 1 : 0 }}
+                  className="overflow-hidden"
+                  style={{ 
+                    maxHeight: isOpen ? '500px' : '0px', 
+                    opacity: isOpen ? 1 : 0,
+                    transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
+                  }}
                 >
-                  <div className="pb-5 px-5 md:px-6 text-[#6b7280]">
+                  <div className="pb-5 pt-4 px-5 md:px-6 text-[#6b7280] leading-relaxed">
                     {faq.answer}
                   </div>
                 </div>

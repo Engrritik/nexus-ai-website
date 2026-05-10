@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
+import { useCustomGSAP } from "@/hooks/useGSAP";
 import { Check, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { DotCluster } from "@/components/ui/DotCluster";
@@ -13,15 +13,16 @@ gsap.registerPlugin(ScrollTrigger);
 export function Pricing() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
-    gsap.from('.pricing-header', {
-      y: 20,
+  useCustomGSAP(() => {
+    // Headline animation
+    gsap.from('h2', {
+      y: 30,
       opacity: 0,
-      duration: 0.6,
-      ease: "power2.out",
+      duration: 0.7,
+      ease: "power3.out",
       scrollTrigger: {
         trigger: containerRef.current,
-        start: "top 85%",
+        start: "top 80%",
         once: true
       }
     });
@@ -39,7 +40,7 @@ export function Pricing() {
         once: true
       }
     });
-  }, { scope: containerRef });
+  }, [containerRef]);
 
   return (
     <section id="pricing" className="py-24 bg-white" ref={containerRef}>
@@ -57,7 +58,7 @@ export function Pricing() {
           <div className="pricing-card bg-white border border-[#e5e7eb] rounded-[16px] p-8 md:p-10 card-hover flex flex-col shadow-sm">
             <div className="flex items-start gap-4 mb-6">
               <div className="mt-1">
-                <DotCluster color="#8b5cf6" size={8} />
+                <DotCluster color="#8b5cf6" />
               </div>
               <div>
                 <h3 className="text-[22px] font-bold text-[#1a1a2e] mb-2"><span className="text-[#8b5cf6]">Inbound</span> AI Receptionist</h3>
@@ -98,7 +99,7 @@ export function Pricing() {
           <div className="pricing-card bg-white border border-[#e5e7eb] rounded-[16px] p-8 md:p-10 card-hover flex flex-col shadow-sm">
             <div className="flex items-start gap-4 mb-6">
               <div className="mt-1">
-                <DotCluster color="#00d4aa" size={8} />
+                <DotCluster color="#00d4aa" />
               </div>
               <div>
                 <h3 className="text-[22px] font-bold text-[#1a1a2e] mb-2"><span className="text-[#00d4aa]">Automated</span> Workflow Engineering</h3>

@@ -5,9 +5,6 @@
   --color-foreground: #1a1a2e;
   --color-primary: #111111;
   --color-secondary: #00d4aa;
-  
-  --font-sans: var(--font-inter);
-  --font-serif: var(--font-instrument);
 }
 
 :root {
@@ -18,14 +15,16 @@
 body {
   background-color: var(--background);
   color: #6b7280;
-  font-family: var(--font-sans), sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-serif), serif;
-  color: var(--foreground);
+h1, h2, h3 { 
+  font-family: 'Instrument Serif', serif; 
+}
+
+body, p, span, a, button { 
+  font-family: 'Inter', sans-serif; 
 }
 
 .bg-dotted-pattern {

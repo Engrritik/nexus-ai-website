@@ -2,17 +2,17 @@ import React from 'react';
 
 interface DotClusterProps {
   color: string;
-  size?: number;
 }
 
-export function DotCluster({ color, size = 8 }: DotClusterProps) {
-  // A 3x3 grid means 9 dots. 
-  // We want opacity to go from ~0.2 to 1.0.
-  // We can just define an array of 9 opacities.
+export function DotCluster({ color }: DotClusterProps) {
+  // 3x3 grid opacities:
+  // Top-left: 0.15
+  // Bottom-right: 1.0
+  // Smooth gradient across the rest
   const opacities = [
-    0.2, 0.3, 0.4,
-    0.3, 0.5, 0.7,
-    0.4, 0.7, 1.0
+    0.15, 0.25, 0.40,
+    0.25, 0.50, 0.70,
+    0.40, 0.70, 1.00
   ];
 
   return (
@@ -28,8 +28,8 @@ export function DotCluster({ color, size = 8 }: DotClusterProps) {
         <div
           key={i}
           style={{
-            width: `${size}px`,
-            height: `${size}px`,
+            width: '8px',
+            height: '8px',
             borderRadius: '50%',
             backgroundColor: color,
             opacity: opacity,

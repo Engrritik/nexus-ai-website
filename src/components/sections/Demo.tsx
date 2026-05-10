@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
+import { useCustomGSAP } from "@/hooks/useGSAP";
 import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -12,19 +12,20 @@ export function Demo() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  useGSAP(() => {
-    gsap.from('.demo-content', {
+  useCustomGSAP(() => {
+    // Headline animation
+    gsap.from('h2', {
       y: 30,
       opacity: 0,
-      duration: 0.6,
-      ease: "power2.out",
+      duration: 0.7,
+      ease: "power3.out",
       scrollTrigger: {
         trigger: containerRef.current,
         start: "top 80%",
         once: true
       }
     });
-  }, { scope: containerRef });
+  }, [containerRef]);
 
   return (
     <section id="demo" className="py-24 bg-[#f8f8f8]" ref={containerRef}>

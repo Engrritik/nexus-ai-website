@@ -1,24 +1,54 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
+import { useCustomGSAP } from "@/hooks/useGSAP";
+
+// Let's implement a Counter component for the stats
+function Counter({ end, suffix = "", prefix = "" }: { end: number, suffix?: string, prefix?: string }) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let startTime: number | null = null;
+    const duration = 1500; // 1.5 seconds
+
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      
+      // easeOutExpo calculation
+      const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      
+      setCount(Math.floor(easeProgress * end));
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [end]);
+
+  return <>{prefix}{count}{suffix}</>;
+}
 
 export function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
+  const darkCardRef = useRef<HTMLDivElement>(null);
   
-  useGSAP(() => {
+  useCustomGSAP(() => {
     // Word reveal for headline
     const words = gsap.utils.toArray('.hero-word');
     gsap.fromTo(words, 
-      { clipPath: "inset(0 100% 0 0)" },
+      { clipPath: "inset(0 100% 0 0)", opacity: 0 },
       {
         clipPath: "inset(0 0% 0 0)",
-        duration: 0.7,
+        opacity: 1,
+        duration: 0.8,
         stagger: 0.1,
-        ease: "power2.out",
-        delay: 0.2
+        ease: "power4.out",
+        delay: 0.3
       }
     );
 
@@ -32,14 +62,79 @@ export function Hero() {
       delay: 0.8
     });
 
-  }, { scope: heroRef });
+    // Dark Card slide up
+    if (darkCardRef.current) {
+      gsap.from(darkCardRef.current, {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: darkCardRef.current,
+          start: "top 80%", // 20% visible
+          once: true
+        }
+      });
+    }
+
+  }, [heroRef]);
 
   return (
     <section ref={heroRef} className="pt-32 pb-8 bg-white relative overflow-hidden">
-      <div className="container mx-auto px-6 md:px-12 max-w-7xl">
+      
+      {/* Background Animated Gradient */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes drift1 {
+          0%, 100% { transform: translate(0, 0); }
+          50% { transform: translate(100px, 100px); }
+        }
+        @keyframes drift2 {
+          0%, 100% { transform: translate(0, 0); }
+          50% { transform: translate(-100px, 100px); }
+        }
+        @keyframes pulseCircle {
+          0%, 100% { transform: scale(0.8); }
+          50% { transform: scale(1.2); }
+        }
+        .bg-circle {
+          position: absolute;
+          z-index: 0;
+          pointer-events: none;
+          width: 400px;
+          height: 400px;
+          border-radius: 50%;
+          filter: blur(120px);
+          opacity: 0.04;
+        }
+        .bg-circle-1 {
+          background-color: #00d4aa;
+          top: -100px;
+          left: -100px;
+          animation: drift1 20s ease-in-out infinite;
+        }
+        .bg-circle-2 {
+          background-color: #7c3aed;
+          top: -100px;
+          right: -100px;
+          animation: drift2 25s ease-in-out infinite;
+        }
+        .bg-circle-3 {
+          background-color: #1a1a2e;
+          top: 30%;
+          left: 50%;
+          margin-left: -200px;
+          animation: pulseCircle 15s ease-in-out infinite;
+        }
+      `}} />
+
+      <div className="bg-circle bg-circle-1"></div>
+      <div className="bg-circle bg-circle-2"></div>
+      <div className="bg-circle bg-circle-3"></div>
+
+      <div className="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
         
         {/* Top Badge */}
-        <div className="hero-fade inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#e5e7eb] mb-12">
+        <div className="hero-fade inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#e5e7eb] mb-12 bg-white">
           <div className="w-2 h-2 rounded-full bg-[#00d4aa] animate-pulse"></div>
           <span className="text-[11px] font-medium tracking-[0.08em] text-[#6b7280] uppercase">
             AI Voice Receptionist
@@ -51,11 +146,10 @@ export function Hero() {
           {/* Left Side Headline */}
           <div>
             <h1 className="text-[56px] md:text-[64px] leading-[1.05] text-[#1a1a2e] font-serif tracking-tight">
-              {/* Splitting text for GSAP animation */}
-              <span className="hero-word block" style={{ clipPath: "inset(0 0 0 0)" }}>Stop</span>
-              <span className="hero-word block" style={{ clipPath: "inset(0 0 0 0)" }}>Missing Calls.</span>
-              <span className="hero-word block" style={{ clipPath: "inset(0 0 0 0)" }}>Start Booking</span>
-              <span className="hero-word block" style={{ clipPath: "inset(0 0 0 0)" }}>Patients.</span>
+              <span className="hero-word block" style={{ clipPath: "inset(0 100% 0 0)", opacity: 0 }}>Stop</span>
+              <span className="hero-word block" style={{ clipPath: "inset(0 100% 0 0)", opacity: 0 }}>Missing Calls.</span>
+              <span className="hero-word block" style={{ clipPath: "inset(0 100% 0 0)", opacity: 0 }}>Start Booking</span>
+              <span className="hero-word block" style={{ clipPath: "inset(0 100% 0 0)", opacity: 0 }}>Patients.</span>
             </h1>
           </div>
 
@@ -86,19 +180,80 @@ export function Hero() {
         {/* Stats Row */}
         <div className="hero-fade grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 border-t border-[#f0f0f0]">
           <div>
-            <div className="text-3xl font-bold text-[#1a1a2e] font-serif mb-1">&lt; 1s</div>
+            <div className="text-3xl font-bold text-[#1a1a2e] font-serif mb-1">
+              &lt; <Counter end={1} suffix="s" />
+            </div>
             <div className="text-[11px] font-medium tracking-[0.08em] text-[#6b7280] uppercase">Latency</div>
           </div>
           <div>
-            <div className="text-3xl font-bold text-[#1a1a2e] font-serif mb-1">100%</div>
+            <div className="text-3xl font-bold text-[#1a1a2e] font-serif mb-1">
+              <Counter end={100} suffix="%" />
+            </div>
             <div className="text-[11px] font-medium tracking-[0.08em] text-[#6b7280] uppercase">Calendar Sync</div>
           </div>
           <div>
-            <div className="text-3xl font-bold text-[#1a1a2e] font-serif mb-1">24/7</div>
-            <div className="text-[11px] font-medium tracking-[0.08em] text-[#6b7280] uppercase">Always On</div>
+            <div className="text-3xl font-bold text-[#1a1a2e] font-serif mb-1">
+              <Counter end={1} suffix=" Mission" />
+            </div>
+            <div className="text-[11px] font-medium tracking-[0.08em] text-[#6b7280] uppercase">Zero Missed Calls</div>
           </div>
         </div>
 
+      </div>
+
+      {/* Dark Rounded Card Section built-in to the Hero Bottom */}
+      <div ref={darkCardRef} className="w-full px-4 md:px-6 mt-20 mb-12 relative z-10">
+        <div className="bg-[#111111] rounded-[24px] py-16 px-6 md:px-12 max-w-[1200px] mx-auto overflow-hidden">
+          
+          <div className="text-center max-w-3xl mx-auto mb-12 flex justify-center">
+            <div className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-white/10 bg-[#1a1a1a] text-gray-300 text-sm font-medium">
+              Stop losing money everyday
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline><polyline points="16 17 22 17 22 11"></polyline></svg>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            
+            {/* Card 1 */}
+            <div className="flex flex-col items-start text-left border border-white/5 bg-[#1e1e2e] h-full p-8 rounded-[16px] relative overflow-hidden group">
+              <div className="absolute bottom-0 left-0 right-0 h-48 bg-[radial-gradient(rgba(255,255,255,0.1)_2px,transparent_2px)] bg-[size:16px_16px] opacity-20" style={{ WebkitMaskImage: 'linear-gradient(to top, white, transparent)' }} />
+              <div className="relative z-10 w-full">
+                <h3 className="text-xl font-bold mb-4 text-white font-serif tracking-tight">Outdated Workflows</h3>
+                <p className="text-[#9ca3af] leading-relaxed font-sans mb-8">
+                  Manual data entry and disjointed tools are slowing down your team's true potential.
+                </p>
+              </div>
+            </div>
+
+            {/* Card 2 (Center Highlighted) */}
+            <div className="flex flex-col items-start text-left border border-white/10 bg-[#1e1e6e] h-full p-8 rounded-[16px] relative overflow-hidden group transform md:-translate-y-4 shadow-xl">
+              <div className="absolute bottom-0 left-0 right-0 h-48 bg-[radial-gradient(rgba(255,255,255,0.2)_2px,transparent_2px)] bg-[size:16px_16px] opacity-30" style={{ WebkitMaskImage: 'linear-gradient(to top, white, transparent)' }} />
+              <div className="relative z-10 w-full h-full flex flex-col">
+                <h3 className="text-xl font-bold mb-4 text-white font-serif tracking-tight">AI-Powered<br/>Efficiency</h3>
+                <p className="text-[#e2e8f0] leading-relaxed font-sans mb-8 flex-1">
+                  Automate repetitive tasks, sync your data seamlessly, and focus on what actually scales your business.
+                </p>
+                <div className="flex justify-start mt-auto pb-2">
+                  <Link href="#contact" className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white text-black font-semibold text-sm hover:scale-105 transition-transform">
+                    Learn More <span className="text-black ml-1">→</span>
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3 */}
+            <div className="flex flex-col items-start text-left border border-white/5 bg-[#1e1e2e] h-full p-8 rounded-[16px] relative overflow-hidden group">
+              <div className="absolute bottom-0 left-0 right-0 h-48 bg-[radial-gradient(rgba(255,255,255,0.1)_2px,transparent_2px)] bg-[size:16px_16px] opacity-20" style={{ WebkitMaskImage: 'linear-gradient(to top, white, transparent)' }} />
+              <div className="relative z-10 w-full">
+                <h3 className="text-xl font-bold mb-4 text-white font-serif tracking-tight">Missed Opportunities</h3>
+                <p className="text-[#9ca3af] leading-relaxed font-sans mb-8">
+                  Without intelligent insights, you're leaving money on the table every single day.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
     </section>
   );
