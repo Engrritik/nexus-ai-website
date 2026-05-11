@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import gsap from "gsap";
 import { useCustomGSAP } from "@/hooks/useGSAP";
+import { motion } from "framer-motion";
 
 const faqData = [
   {
@@ -32,19 +33,6 @@ export function FAQ() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useCustomGSAP(() => {
-    // Headline animation
-    gsap.from('h2', {
-      y: 30,
-      opacity: 0,
-      duration: 0.7,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 80%",
-        once: true
-      }
-    });
-
     gsap.from('.faq-item', {
       y: 20,
       opacity: 0,
@@ -62,9 +50,15 @@ export function FAQ() {
   return (
     <section ref={containerRef} className="py-24 bg-white">
       <div className="max-w-3xl mx-auto px-6">
-        <h2 className="text-4xl md:text-[56px] font-bold text-center text-[#1a1a2e] mb-12 font-serif tracking-tight">
+        <motion.h2 
+          className="text-4xl md:text-[56px] font-bold text-center text-[#1a1a2e] mb-12 font-serif tracking-tight"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
           Questions you may have
-        </h2>
+        </motion.h2>
         
         <div className="flex flex-col gap-2">
           {faqData.map((faq, idx) => {

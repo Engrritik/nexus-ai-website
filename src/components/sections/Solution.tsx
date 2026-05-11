@@ -6,38 +6,12 @@ import { DotCluster } from "@/components/ui/DotCluster";
 import { TiltCardWrapper } from "@/components/ui/TiltCardWrapper";
 import { useCustomGSAP } from "@/hooks/useGSAP";
 import gsap from "gsap";
+import { motion } from "framer-motion";
 
 export function Solution() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useCustomGSAP(() => {
-    // All H2 fade slide
-    gsap.from('h2', {
-      y: 30,
-      opacity: 0,
-      duration: 0.7,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 80%",
-        once: true
-      }
-    });
-
-    // Stagger reveal for cards
-    const solutionCards = gsap.utils.toArray('.solution-card-anim');
-    gsap.from(solutionCards, {
-      y: 40,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.12,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 80%",
-        once: true
-      }
-    });
   }, [containerRef]);
 
   // Card styles
@@ -58,15 +32,39 @@ export function Solution() {
       <div className="container mx-auto px-6 md:px-12 max-w-[1200px]">
         
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl md:text-[56px] font-bold text-[#1a1a2e] tracking-tight leading-tight">
+          <motion.h2 
+            className="text-4xl md:text-[56px] font-bold text-[#1a1a2e] tracking-tight leading-tight"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
             Custom AI Solutions, Tailored to Your Business
-          </h2>
+          </motion.h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <motion.div 
+          className="grid md:grid-cols-2 gap-6 services-grid"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-40px' }}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.1 } }
+          }}
+        >
           
           {/* Card 1 */}
-          <div className="solution-card-anim h-full">
+          <motion.div 
+            className="solution-card-anim h-full"
+            variants={{
+              hidden: { opacity: 0, y: 32 },
+              visible: { opacity: 1, y: 0, 
+                transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } 
+              }
+            }}
+            whileHover={{ y: -4, transition: { duration: 0.2 } }}
+          >
             <TiltCardWrapper className="hover:border-[#d1d5db] rounded-[16px]">
               <div style={cardStyle}>
                 <div className="flex items-start gap-4">
@@ -103,10 +101,19 @@ export function Solution() {
                 </div>
               </div>
             </TiltCardWrapper>
-          </div>
+          </motion.div>
 
           {/* Card 2 */}
-          <div className="solution-card-anim h-full">
+          <motion.div 
+            className="solution-card-anim h-full"
+            variants={{
+              hidden: { opacity: 0, y: 32 },
+              visible: { opacity: 1, y: 0, 
+                transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } 
+              }
+            }}
+            whileHover={{ y: -4, transition: { duration: 0.2 } }}
+          >
             <TiltCardWrapper className="hover:border-[#d1d5db] rounded-[16px]">
               <div style={cardStyle}>
                 <div className="flex items-start gap-4">
@@ -143,10 +150,19 @@ export function Solution() {
                 </div>
               </div>
             </TiltCardWrapper>
-          </div>
+          </motion.div>
 
           {/* Card 3 */}
-          <div className="solution-card-anim h-full">
+          <motion.div 
+            className="solution-card-anim h-full"
+            variants={{
+              hidden: { opacity: 0, y: 32 },
+              visible: { opacity: 1, y: 0, 
+                transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } 
+              }
+            }}
+            whileHover={{ y: -4, transition: { duration: 0.2 } }}
+          >
             <TiltCardWrapper className="hover:border-[#d1d5db] rounded-[16px]">
               <div style={cardStyle}>
                 <div className="flex items-start gap-4">
@@ -183,10 +199,19 @@ export function Solution() {
                 </div>
               </div>
             </TiltCardWrapper>
-          </div>
+          </motion.div>
 
           {/* Card 4 */}
-          <div className="solution-card-anim h-full">
+          <motion.div 
+            className="solution-card-anim h-full"
+            variants={{
+              hidden: { opacity: 0, y: 32 },
+              visible: { opacity: 1, y: 0, 
+                transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } 
+              }
+            }}
+            whileHover={{ y: -4, transition: { duration: 0.2 } }}
+          >
             <TiltCardWrapper className="hover:border-[#d1d5db] rounded-[16px]">
               <div style={cardStyle}>
                 <div className="flex items-start gap-4">
@@ -223,9 +248,9 @@ export function Solution() {
                 </div>
               </div>
             </TiltCardWrapper>
-          </div>
+          </motion.div>
 
-        </div>
+        </motion.div>
 
       </div>
     </section>

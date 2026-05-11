@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useCustomGSAP } from "@/hooks/useGSAP";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,18 +14,6 @@ export function Demo() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   useCustomGSAP(() => {
-    // Headline animation
-    gsap.from('h2', {
-      y: 30,
-      opacity: 0,
-      duration: 0.7,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 80%",
-        once: true
-      }
-    });
   }, [containerRef]);
 
   return (
@@ -32,9 +21,15 @@ export function Demo() {
       <div className="container mx-auto px-6 md:px-12 max-w-[1000px] demo-content">
         
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-[48px] font-bold text-[#1a1a2e] font-serif tracking-tight">
+          <motion.h2 
+            className="text-4xl md:text-[48px] font-bold text-[#1a1a2e] font-serif tracking-tight"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
             See It In Action
-          </h2>
+          </motion.h2>
         </div>
 
         <div className="bg-white border border-[#e5e7eb] rounded-[24px] p-4 md:p-6 shadow-sm overflow-hidden">

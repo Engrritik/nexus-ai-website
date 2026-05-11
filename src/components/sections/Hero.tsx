@@ -1,37 +1,10 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { useCustomGSAP } from "@/hooks/useGSAP";
-
-// Let's implement a Counter component for the stats
-function Counter({ end, suffix = "", prefix = "" }: { end: number, suffix?: string, prefix?: string }) {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    let startTime: number | null = null;
-    const duration = 1500; // 1.5 seconds
-
-    const animate = (currentTime: number) => {
-      if (!startTime) startTime = currentTime;
-      const progress = Math.min((currentTime - startTime) / duration, 1);
-      
-      // easeOutExpo calculation
-      const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-      
-      setCount(Math.floor(easeProgress * end));
-
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      }
-    };
-
-    requestAnimationFrame(animate);
-  }, [end]);
-
-  return <>{prefix}{count}{suffix}</>;
-}
+import { motion } from "framer-motion";
 
 export function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -81,55 +54,9 @@ export function Hero() {
 
   return (
     <section ref={heroRef} className="pt-32 pb-8 bg-white relative overflow-hidden">
-      
-      {/* Background Animated Gradient */}
-      <style dangerouslySetInnerHTML={{__html: `
-        @keyframes drift1 {
-          0%, 100% { transform: translate(0, 0); }
-          50% { transform: translate(100px, 100px); }
-        }
-        @keyframes drift2 {
-          0%, 100% { transform: translate(0, 0); }
-          50% { transform: translate(-100px, 100px); }
-        }
-        @keyframes pulseCircle {
-          0%, 100% { transform: scale(0.8); }
-          50% { transform: scale(1.2); }
-        }
-        .bg-circle {
-          position: absolute;
-          z-index: 0;
-          pointer-events: none;
-          width: 400px;
-          height: 400px;
-          border-radius: 50%;
-          filter: blur(120px);
-          opacity: 0.04;
-        }
-        .bg-circle-1 {
-          background-color: #00d4aa;
-          top: -100px;
-          left: -100px;
-          animation: drift1 20s ease-in-out infinite;
-        }
-        .bg-circle-2 {
-          background-color: #7c3aed;
-          top: -100px;
-          right: -100px;
-          animation: drift2 25s ease-in-out infinite;
-        }
-        .bg-circle-3 {
-          background-color: #1a1a2e;
-          top: 30%;
-          left: 50%;
-          margin-left: -200px;
-          animation: pulseCircle 15s ease-in-out infinite;
-        }
-      `}} />
-
-      <div className="bg-circle bg-circle-1"></div>
-      <div className="bg-circle bg-circle-2"></div>
-      <div className="bg-circle bg-circle-3"></div>
+      <div className="hero-orb-1" />
+      <div className="hero-orb-2" />
+      <div className="hero-orb-3" />
 
       <div className="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
         
@@ -146,10 +73,22 @@ export function Hero() {
           {/* Left Side Headline */}
           <div>
             <h1 className="text-[56px] md:text-[64px] leading-[1.05] text-[#1a1a2e] font-serif tracking-tight">
-              <span className="hero-word block" style={{ clipPath: "inset(0 100% 0 0)", opacity: 0 }}>Stop</span>
-              <span className="hero-word block" style={{ clipPath: "inset(0 100% 0 0)", opacity: 0 }}>Missing Calls.</span>
-              <span className="hero-word block" style={{ clipPath: "inset(0 100% 0 0)", opacity: 0 }}>Start Booking</span>
-              <span className="hero-word block" style={{ clipPath: "inset(0 100% 0 0)", opacity: 0 }}>Patients.</span>
+              <motion.span 
+                className="block"
+                initial={{ opacity: 0, clipPath: 'inset(0 100% 0 0)' }}
+                animate={{ opacity: 1, clipPath: 'inset(0 0% 0 0)' }}
+                transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              >
+                Stop Missing Calls.
+              </motion.span>
+              <motion.span 
+                className="block"
+                initial={{ opacity: 0, clipPath: 'inset(0 100% 0 0)' }}
+                animate={{ opacity: 1, clipPath: 'inset(0 0% 0 0)' }}
+                transition={{ duration: 0.9, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              >
+                Start Booking Patients.
+              </motion.span>
             </h1>
           </div>
 
@@ -178,24 +117,24 @@ export function Hero() {
         </div>
 
         {/* Stats Row */}
-        <div className="hero-fade grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 border-t border-[#f0f0f0]">
+        <div className="hero-fade hero-stats flex items-center justify-between pt-12 border-t border-[#f0f0f0]">
           <div>
             <div className="text-3xl font-bold text-[#1a1a2e] font-serif mb-1">
-              &lt; <Counter end={1} suffix="s" />
+              &lt; 1s
             </div>
             <div className="text-[11px] font-medium tracking-[0.08em] text-[#6b7280] uppercase">Latency</div>
           </div>
           <div>
             <div className="text-3xl font-bold text-[#1a1a2e] font-serif mb-1">
-              <Counter end={100} suffix="%" />
+              100%
             </div>
-            <div className="text-[11px] font-medium tracking-[0.08em] text-[#6b7280] uppercase">Calendar Sync</div>
+            <div className="text-[11px] font-medium tracking-[0.08em] text-[#6b7280] uppercase">Calendar Sync Accuracy</div>
           </div>
           <div>
             <div className="text-3xl font-bold text-[#1a1a2e] font-serif mb-1">
-              <Counter end={1} suffix=" Mission" />
+              24/7
             </div>
-            <div className="text-[11px] font-medium tracking-[0.08em] text-[#6b7280] uppercase">Zero Missed Calls</div>
+            <div className="text-[11px] font-medium tracking-[0.08em] text-[#6b7280] uppercase">Always On</div>
           </div>
         </div>
 

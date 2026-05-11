@@ -4,24 +4,12 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useCustomGSAP } from "@/hooks/useGSAP";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export function About() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useCustomGSAP(() => {
-    // Headline animation
-    gsap.from('h2', {
-      y: 30,
-      opacity: 0,
-      duration: 0.7,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 80%",
-        once: true
-      }
-    });
-
     // Split reveal
     gsap.from('.about-photo', {
       x: -60,
@@ -57,10 +45,16 @@ export function About() {
           <div className="inline-block mb-4 px-3 py-1 rounded-full border border-[#e5e7eb] bg-[#f8f8f8] text-[#6b7280] text-[11px] font-medium tracking-[0.08em] uppercase">
             The Founder
           </div>
-          <h2 className="text-4xl md:text-[48px] font-bold mb-6 text-[#1a1a2e] font-serif tracking-tight">
+          <motion.h2 
+            className="text-4xl md:text-[48px] font-bold mb-6 text-[#1a1a2e] font-serif tracking-tight"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
             Built by someone who <br className="hidden md:block" />
             understands the problem
-          </h2>
+          </motion.h2>
         </div>
 
         <div className="max-w-4xl mx-auto about-card">

@@ -5,24 +5,12 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useCustomGSAP } from "@/hooks/useGSAP";
 import { Mail, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 export function Contact() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useCustomGSAP(() => {
-    // Headline animation
-    gsap.from('h2', {
-      y: 30,
-      opacity: 0,
-      duration: 0.7,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 80%",
-        once: true
-      }
-    });
-
     gsap.from('.contact-form', {
       x: 30,
       opacity: 0,
@@ -42,10 +30,16 @@ export function Contact() {
         <div className="grid md:grid-cols-2 gap-16 max-w-[1100px] mx-auto items-center">
           
           <div className="contact-text">
-            <h2 className="text-4xl md:text-[56px] font-bold mb-6 text-[#1a1a2e] leading-tight font-serif tracking-tight">
+            <motion.h2 
+              className="text-4xl md:text-[56px] font-bold mb-6 text-[#1a1a2e] leading-tight font-serif tracking-tight"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            >
               Ready to stop <br/>
               missing patients?
-            </h2>
+            </motion.h2>
             <p className="text-lg text-[#6b7280] mb-12 leading-relaxed">
               Drop your details below and we'll be in touch to schedule your free 15-min demo.
             </p>
