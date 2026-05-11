@@ -17,12 +17,12 @@ export function Demo() {
   }, [containerRef]);
 
   return (
-    <section id="demo" className="py-24 bg-[#f8f8f8]" ref={containerRef}>
+    <section id="demo" className="py-24 bg-transparent relative z-10" ref={containerRef}>
       <div className="container mx-auto px-6 md:px-12 max-w-[1000px] demo-content">
         
         <div className="text-center mb-12">
           <motion.h2 
-            className="text-4xl md:text-[48px] font-bold text-[#1a1a2e] font-serif tracking-tight"
+            className="text-4xl md:text-[48px] font-bold text-white font-serif tracking-tight"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
@@ -32,8 +32,8 @@ export function Demo() {
           </motion.h2>
         </div>
 
-        <div className="bg-white border border-[#e5e7eb] rounded-[24px] p-4 md:p-6 shadow-sm overflow-hidden">
-          <div className="w-full relative rounded-[16px] overflow-hidden bg-[#111111] border border-[#e5e7eb] group">
+        <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-[24px] p-4 md:p-6 shadow-sm overflow-hidden">
+          <div className="w-full relative rounded-[16px] overflow-hidden bg-[#050505] border border-white/5 group">
             {isPlaying ? (
               <div className="w-full" style={{ aspectRatio: '16/9' }}>
                 <iframe 
@@ -60,14 +60,14 @@ export function Demo() {
                 />
                 
                 <div className="w-20 h-20 bg-white shadow-lg rounded-full flex items-center justify-center z-20 group-hover:scale-110 transition-transform duration-300">
-                  <svg className="w-8 h-8 text-[#1a1a2e] ml-2" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-8 h-8 text-black ml-2" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z" />
                   </svg>
                 </div>
               </div>
             )}
           </div>
-          <p className="mt-6 text-center text-[14px] text-[#6b7280]">
+          <p className="mt-6 text-center text-[14px] text-[#a1a1aa]">
             Watch Nexus AI handle a live patient booking in under 60 seconds.
           </p>
         </div>

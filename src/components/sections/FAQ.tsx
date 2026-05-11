@@ -48,10 +48,10 @@ export function FAQ() {
   }, [containerRef]);
 
   return (
-    <section ref={containerRef} className="py-24 bg-white">
+    <section ref={containerRef} className="py-24 bg-transparent relative z-10 border-t border-white/5">
       <div className="max-w-3xl mx-auto px-6">
         <motion.h2 
-          className="text-4xl md:text-[56px] font-bold text-center text-[#1a1a2e] mb-12 font-serif tracking-tight"
+          className="text-4xl md:text-[56px] font-bold text-center text-white mb-12 font-serif tracking-tight"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
@@ -66,21 +66,21 @@ export function FAQ() {
             return (
               <div 
                 key={idx} 
-                className="faq-item bg-white border border-[#e5e7eb] rounded-[16px] overflow-hidden cursor-pointer hover:border-[#d1d5db] transition-colors"
+                className="faq-item bg-white/5 border border-white/10 rounded-[16px] overflow-hidden cursor-pointer hover:border-[#00d4aa]/30 transition-colors backdrop-blur-sm"
                 onClick={() => setOpenIndex(isOpen ? null : idx)}
               >
-                <div className="p-5 md:px-6 flex justify-between items-center bg-[#f8f8f8]">
-                  <h3 className="font-bold text-[#1a1a2e] text-[16px]">{faq.question}</h3>
+                <div className="p-5 md:px-6 flex justify-between items-center bg-transparent">
+                  <h3 className="font-bold text-white text-[16px]">{faq.question}</h3>
                   <div className="flex-shrink-0 ml-4 relative w-6 h-6 flex items-center justify-center">
                     <div 
-                      className="absolute w-4 h-[2px] bg-[#1a1a2e] transition-transform"
+                      className="absolute w-4 h-[2px] bg-white transition-transform"
                       style={{ 
                         transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)',
                         transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)' 
                       }}
                     />
                     <div 
-                      className="absolute w-4 h-[2px] bg-[#1a1a2e] transition-transform"
+                      className="absolute w-4 h-[2px] bg-white transition-transform"
                       style={{ 
                         transform: isOpen ? 'rotate(45deg)' : 'rotate(90deg)',
                         transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)' 
@@ -97,7 +97,7 @@ export function FAQ() {
                     transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
                   }}
                 >
-                  <div className="pb-5 pt-4 px-5 md:px-6 text-[#6b7280] leading-relaxed">
+                  <div className="pb-5 pt-4 px-5 md:px-6 text-[#a1a1aa] leading-relaxed">
                     {faq.answer}
                   </div>
                 </div>

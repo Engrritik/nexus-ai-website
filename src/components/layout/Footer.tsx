@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="relative bg-white border-t border-[#f0f0f0] overflow-hidden py-16 md:py-24">
+    <footer className="relative bg-transparent border-t border-white/5 overflow-hidden py-16 md:py-24">
       {/* Giant Watermark */}
       <div 
         className="absolute bottom-0 left-0 right-0 pointer-events-none select-none overflow-hidden z-0 flex items-center justify-center leading-none"
@@ -21,7 +21,8 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           
           <div className="flex items-center">
-            <img src='/logo.png' alt='Nexus AI' className="h-8 w-auto object-contain filter invert opacity-80" />
+            <img src='/mainfav.png' alt='Nexus AI' className="h-8 w-auto object-contain opacity-90" />
+            <span className="ml-2 text-xl font-bold text-white font-serif tracking-tight">Nexus AI</span>
           </div>
 
           <div className="flex items-center gap-8">

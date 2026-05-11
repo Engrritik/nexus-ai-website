@@ -3,6 +3,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SmoothScrolling } from "@/components/ui/SmoothScrolling";
 import { FontLoader } from "@/components/ui/FontLoader";
+import { WaveBackground } from "@/components/ui/WaveBackground";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -23,7 +24,8 @@ export default function RootLayout({
       <head>
         <FontLoader />
       </head>
-      <body className={`min-h-full flex flex-col text-[#6b7280] bg-[#ffffff] antialiased selection:bg-[#00d4aa]/30 selection:text-black`}>
+      <body className={`min-h-full flex flex-col text-[#a1a1aa] bg-[#050505] antialiased selection:bg-[#00d4aa]/30 selection:text-white`}>
+        <WaveBackground />
         <SmoothScrolling>
           <Navbar />
           <main className="flex-1">
